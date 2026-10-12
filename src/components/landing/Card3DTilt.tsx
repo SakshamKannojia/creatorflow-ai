@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 interface Card3DTiltProps {
   children: React.ReactNode;
@@ -13,9 +13,9 @@ interface Card3DTiltProps {
 export default function Card3DTilt({
   children,
   className = "",
-  intensity = 15,
-  glareOpacity = 0.25,
-  scale = 1.02,
+  intensity = 12,
+  glareOpacity = 0.22,
+  scale = 1.015,
 }: Card3DTiltProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [transformStyle, setTransformStyle] = useState("");
@@ -35,7 +35,7 @@ export default function Card3DTilt({
     const rotateY = ((x - centerX) / centerX) * intensity;
 
     setTransformStyle(
-      `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`
+      `perspective(1200px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(${scale}, ${scale}, ${scale})`
     );
 
     const glareX = (x / rect.width) * 100;
@@ -49,7 +49,7 @@ export default function Card3DTilt({
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    setTransformStyle("perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
+    setTransformStyle("perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
     setGlarePosition((prev) => ({ ...prev, opacity: 0 }));
   };
 
@@ -59,18 +59,18 @@ export default function Card3DTilt({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative transition-transform duration-200 ease-out will-change-transform ${className}`}
+      className={`relative transition-all duration-300 ease-out will-change-transform ${className}`}
       style={{
         transform: transformStyle,
         transformStyle: "preserve-3d",
       }}
     >
-      {/* Glare effect */}
+      {/* Dynamic Specular Lens Glare */}
       <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] z-30 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] z-30 transition-opacity duration-300 overflow-hidden"
         style={{
           opacity: glarePosition.opacity,
-          background: `radial-gradient(circle 350px at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.2), transparent 80%)`,
+          background: `radial-gradient(circle 420px at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.18), rgba(99, 102, 241, 0.08) 45%, transparent 75%)`,
         }}
       />
       {children}
