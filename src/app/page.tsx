@@ -1,27 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+
 import { 
   Sparkles, 
   ArrowRight, 
   Play, 
   Layers, 
-  Dna, 
-  Video, 
-  CalendarDays, 
-  Zap, 
-  ShieldCheck, 
   Star, 
-  TrendingUp, 
-  CheckCircle2, 
   Menu, 
   X, 
   ChevronDown, 
-  ChevronRight,
-  Flame,
-  Clock,
-  Compass,
   Cpu
 } from "lucide-react";
 
@@ -32,7 +23,6 @@ import Bento3DShowcase from "@/components/landing/Bento3DShowcase";
 import Testimonials3D from "@/components/landing/Testimonials3D";
 import Card3DTilt from "@/components/landing/Card3DTilt";
 
-// Clean wrapper component without text movement or animation
 const FadeIn = ({ 
   children, 
   className = ""
@@ -60,8 +50,8 @@ export default function Home() {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-[#070b14] flex items-center justify-center text-indigo-400">
-        <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center text-indigo-600">
+        <div className="w-7 h-7 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -72,8 +62,8 @@ export default function Home() {
       a: "Generic AI chatbots output repetitive, robotic copy that sounds identical across every user. CreatorFlow's Content DNA extracts your exact sentence cadence, vocabulary rules, banned cliches, and storytelling structure, ensuring every generated script sounds indistinguishable from your own writing."
     },
     {
-      q: "Can I export directly into my teleprompter and editing software?",
-      a: "Yes! CreatorFlow includes a built-in auto-scrolling smart teleprompter with cadence guidance. You can also export your visual blueprints, shot lists, and script drafts to Notion, Markdown, Google Docs, or copy them formatted with one click."
+      q: "Can I export directly into my production and editing workflows?",
+      a: "Yes! You can export your scripts, visual blueprints, and shot lists directly to Notion, Markdown, Google Docs, or copy them formatted with one click for easy recording and teleprompter apps."
     },
     {
       q: "What video formats are supported?",
@@ -81,75 +71,72 @@ export default function Home() {
     },
     {
       q: "Is there a free trial to test the workflow?",
-      a: "Yes, you can sign up and start generating right away without a credit card. You'll get access to the live Script Studio, Content DNA setup, and production pipeline."
+      a: "Yes, you can sign up and start generating right away without a credit card. You'll get instant access to the Script Generator, Content DNA calibration, and production pipeline."
     }
   ];
 
   return (
-    <div className="min-h-screen bg-[#070B14] text-slate-100 font-sans selection:bg-indigo-500/30 selection:text-indigo-200 relative overflow-x-hidden bg-grid-pattern">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-indigo-500/20 selection:text-indigo-900 relative overflow-x-hidden bg-dot-pattern">
       
-      {/* 3D WebGL Background Layer */}
+      {/* Soft Ethereal 3D WebGL Background Layer */}
       <Hero3DCanvas />
 
-      {/* Ambient Gradient Flares */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-indigo-600/15 via-blue-600/10 to-transparent blur-[120px] pointer-events-none -z-10" />
-      <div className="fixed top-[60vh] -left-[200px] w-[600px] h-[600px] bg-cyan-600/10 blur-[140px] pointer-events-none -z-10" />
+      {/* Ambient Pastel Glows */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-b from-indigo-100/50 via-sky-50/40 to-transparent blur-[140px] pointer-events-none -z-10" />
+      <div className="fixed top-[55vh] -left-[200px] w-[600px] h-[600px] bg-indigo-50/50 blur-[150px] pointer-events-none -z-10" />
 
-      {/* TOP NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#070B14]/80 backdrop-blur-xl border-b border-indigo-950/60 transition-all">
-        <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+      {/* TOP NAVIGATION — MINIMAL LIGHT */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80 transition-all">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-[1px] shadow-lg shadow-indigo-600/30 group-hover:shadow-indigo-500/50 transition-all">
-              <div className="w-full h-full bg-[#080d1a] rounded-[11px] flex items-center justify-center">
-                <Sparkles className="w-4 h-4 text-indigo-400 group-hover:rotate-12 transition-transform duration-300" />
-              </div>
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-xs">
+              <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div>
-              <span className="font-extrabold text-lg tracking-tight text-white flex items-center gap-1">
-                CreatorFlow <span className="text-indigo-400 font-mono text-xs">AI</span>
+              <span className="font-bold text-base tracking-tight text-slate-900 flex items-center gap-1">
+                CreatorFlow <span className="text-indigo-600 font-mono text-xs">AI</span>
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav Items */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#simulator" className="text-slate-400 hover:text-indigo-300 transition-colors">
-              Workflow Simulator
+          <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+            <a href="#simulator" className="hover:text-slate-900 transition-colors">
+              Simulator
             </a>
-            <a href="#features" className="text-slate-400 hover:text-indigo-300 transition-colors">
+            <a href="#features" className="hover:text-slate-900 transition-colors">
               Features
             </a>
-            <a href="#testimonials" className="text-slate-400 hover:text-indigo-300 transition-colors">
+            <a href="#testimonials" className="hover:text-slate-900 transition-colors">
               Creators
             </a>
-            <a href="#faq" className="text-slate-400 hover:text-indigo-300 transition-colors">
+            <a href="#faq" className="hover:text-slate-900 transition-colors">
               FAQ
             </a>
           </div>
 
           {/* Nav Actions */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
+          <div className="hidden md:flex items-center gap-3">
+            <Link
               href="/login"
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors px-4 py-2"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2"
             >
               Sign In
-            </a>
-            <a
+            </Link>
+            <Link
               href="/signup"
-              className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-xs font-semibold rounded-xl group bg-gradient-to-br from-indigo-500 via-blue-500 to-cyan-400 hover:from-indigo-600 hover:via-blue-600 hover:to-cyan-500 shadow-lg shadow-indigo-600/25 active:scale-95 transition-all"
+              className="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold rounded-xl bg-slate-900 hover:bg-slate-800 text-white shadow-xs transition-all active:scale-[0.98] gap-1.5"
             >
-              <span className="relative px-4 py-2 transition-all ease-in duration-75 bg-[#080d1a] group-hover:bg-opacity-0 rounded-[10px] text-white flex items-center gap-1.5 font-bold">
-                Deploy Workspace <ArrowRight className="w-3.5 h-3.5" />
-              </span>
-            </a>
+              <span>Get Started</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
           <button 
-            className="md:hidden text-slate-300 p-2" 
+            className="md:hidden text-slate-700 p-2" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
           >
@@ -164,36 +151,46 @@ export default function Home() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-b border-indigo-950 bg-[#070b14]/95 backdrop-blur-2xl px-6 py-6 space-y-4"
+              className="md:hidden border-b border-slate-200 bg-white/98 backdrop-blur-2xl px-6 py-5 space-y-4 shadow-lg"
             >
-              <div className="flex flex-col gap-3 font-medium text-sm">
-                <a href="#simulator" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-1">Workflow Simulator</a>
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-1">Features</a>
-                <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-1">Creators</a>
-                <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="text-slate-300 py-1">FAQ</a>
+              <div className="flex flex-col gap-3 font-medium text-sm text-slate-700">
+                <a href="#simulator" onClick={() => setMobileMenuOpen(false)} className="py-1">Simulator</a>
+                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="py-1">Features</a>
+                <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="py-1">Creators</a>
+                <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="py-1">FAQ</a>
               </div>
-              <div className="pt-4 border-t border-indigo-950 flex flex-col gap-3">
-                <a href="/login" className="w-full text-center py-2.5 rounded-lg border border-indigo-950 text-slate-200 text-sm font-semibold">
+              <div className="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+                <Link href="/login" className="w-full text-center py-2.5 rounded-xl border border-slate-200 text-slate-700 text-sm font-semibold">
                   Sign In
-                </a>
-                <a href="/signup" className="w-full text-center py-2.5 rounded-lg bg-indigo-600 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30">
-                  Deploy Workspace
-                </a>
+                </Link>
+                <Link href="/signup" className="w-full text-center py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold shadow-xs">
+                  Get Started
+                </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
 
-      {/* HERO SECTION */}
-      <section className="relative pt-36 pb-20 md:pt-48 md:pb-28 px-6 overflow-hidden">
-        <div className="max-w-5xl mx-auto text-center space-y-7 relative z-10">
+      {/* HERO SECTION — MODERN MINIMAL */}
+      <section className="relative pt-32 pb-16 md:pt-44 md:pb-24 px-6 overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
           
+          {/* Subtle Minimal Pill Badge */}
+          <FadeIn>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs text-xs font-medium text-slate-700 mx-auto">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Creator Operating System</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-indigo-600 font-semibold">Gemini 1.5 Pro</span>
+            </div>
+          </FadeIn>
+
           {/* Main Title */}
           <FadeIn delay={0.1}>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white leading-[1.08]">
-              Standardise Your <br className="hidden sm:block" />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-200 via-indigo-400 to-cyan-300">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-950 leading-[1.08]">
+              Standardize Your <br className="hidden sm:block" />
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-indigo-700 to-sky-600">
                 Content Operations.
               </span>
             </h1>
@@ -201,52 +198,52 @@ export default function Home() {
 
           {/* Subtitle */}
           <FadeIn delay={0.2}>
-            <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
               Transform messy drafts and creative chaos into systematic, high-retention video blueprints. 
-              Built with custom Content DNA for creators who scale like software teams.
+              Calibrated with custom Content DNA for creators who publish consistently.
             </p>
           </FadeIn>
 
-          {/* CTA Buttons */}
+          {/* Minimal Modern Buttons */}
           <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <a
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
+              <Link
                 href="/signup"
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-bold text-sm rounded-xl transition-all shadow-xl shadow-indigo-600/30 flex items-center justify-center gap-2 group hover:scale-[1.02]"
+                className="w-full sm:w-auto px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm rounded-xl transition-all shadow-xs hover:shadow-md flex items-center justify-center gap-2 active:scale-[0.98]"
               >
                 <span>Deploy Free Workspace</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
               <a
                 href="#simulator"
-                className="w-full sm:w-auto px-7 py-4 bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold text-sm rounded-xl border border-indigo-900/60 transition-all flex items-center justify-center gap-2 backdrop-blur-md"
+                className="w-full sm:w-auto px-5 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-medium text-sm rounded-xl border border-slate-200/90 shadow-xs transition-all flex items-center justify-center gap-2 hover:border-slate-300 active:scale-[0.98]"
               >
-                <Play className="w-4 h-4 text-indigo-400 fill-indigo-400/20" />
-                <span>Test Workflow Simulator</span>
+                <Play className="w-3.5 h-3.5 text-indigo-600 fill-indigo-600/10" />
+                <span>Test Simulator</span>
               </a>
             </div>
           </FadeIn>
         </div>
 
-        {/* 3D Floating Hero Console */}
-        <FadeIn delay={0.5}>
+        {/* 3D Modern Studio Console */}
+        <FadeIn delay={0.4}>
           <Hero3DStudio />
         </FadeIn>
       </section>
 
-      {/* INTERACTIVE 3D SIMULATOR SECTION */}
-      <section id="simulator" className="py-24 px-6 relative border-t border-indigo-950/60">
-        <div className="max-w-6xl mx-auto space-y-12">
+      {/* INTERACTIVE WORKFLOW SIMULATOR SECTION */}
+      <section id="simulator" className="py-20 px-6 relative border-t border-slate-200/70 bg-white/50">
+        <div className="max-w-6xl mx-auto space-y-10">
           <FadeIn>
-            <div className="text-center space-y-4 max-w-3xl mx-auto">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-800 text-indigo-300 text-xs font-semibold uppercase tracking-wider">
-                <Cpu className="w-3.5 h-3.5 text-cyan-400" /> Realtime Pipeline Playground
+            <div className="text-center space-y-3 max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-150 text-indigo-700 text-xs font-semibold">
+                <Cpu className="w-3.5 h-3.5 text-indigo-600" /> Pipeline Playground
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Try The Production Engine Live
               </h2>
-              <p className="text-slate-400 text-base sm:text-lg">
-                Pick a creator archetype below and witness how CreatorFlow parses your idea into Content DNA, scripted hooks, B-roll checklists, and calendar distribution.
+              <p className="text-slate-600 text-sm sm:text-base">
+                Pick a creator archetype below and witness how CreatorFlow parses raw ideas into Content DNA, scripted hooks, B-roll checklists, and calendar distribution.
               </p>
             </div>
           </FadeIn>
@@ -257,18 +254,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CORE 3D BENTO FEATURES SECTION */}
-      <section id="features" className="py-24 px-6 relative border-t border-indigo-950/60 bg-[#060a14]/60">
-        <div className="max-w-6xl mx-auto space-y-14">
+      {/* CORE BENTO FEATURES SECTION */}
+      <section id="features" className="py-20 px-6 relative border-t border-slate-200/70 bg-[#fafafa]">
+        <div className="max-w-6xl mx-auto space-y-12">
           <FadeIn>
-            <div className="max-w-2xl space-y-4">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-800 text-indigo-300 text-xs font-semibold uppercase tracking-wider">
-                <Layers className="w-3.5 h-3.5 text-indigo-400" /> Architectural Advantage
+            <div className="max-w-2xl space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-150 text-indigo-700 text-xs font-semibold">
+                <Layers className="w-3.5 h-3.5 text-indigo-600" /> Architectural Advantage
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                 The Operating System for Professional Creators
               </h2>
-              <p className="text-slate-400 text-base sm:text-lg">
+              <p className="text-slate-600 text-sm sm:text-base">
                 Eliminate blank-page syndrome and fragmented Google Docs. Everything is calibrated for maximum viewer retention.
               </p>
             </div>
@@ -280,26 +277,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HIGH-IMPACT METRICS STRIP */}
-      <section className="py-20 px-6 border-y border-indigo-950/60 bg-gradient-to-b from-[#080d1a] to-[#060a14]">
+      {/* METRICS STRIP — MINIMAL LIGHT */}
+      <section className="py-16 px-6 border-y border-slate-200/80 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { stat: "+340%", title: "Viewer Retention Rate", desc: "Hooks engineered against 2.4M viral videos." },
+              { stat: "+340%", title: "Viewer Retention Rate", desc: "Hooks engineered against 2.4M viral short-form videos." },
               { stat: "4.2x", title: "Faster Turnaround", desc: "From idea to ready-to-shoot blueprint in under 3 minutes." },
               { stat: "Zero", title: "Creative Burnout", desc: "Infinite pipeline of high-intent topics calibrated to your DNA." },
               { stat: "100%", title: "Voice Consistency", desc: "Every word follows your custom tone, pace, and rhythm." }
             ].map((metric, i) => (
               <FadeIn key={i} delay={i * 0.1}>
-                <Card3DTilt intensity={8} glareOpacity={0.15} className="h-full">
-                  <div className="p-6 rounded-2xl bg-slate-900/70 border border-indigo-900/30 h-full flex flex-col justify-between">
+                <Card3DTilt intensity={6} glareOpacity={0.05} className="h-full">
+                  <div className="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 h-full flex flex-col justify-between shadow-xs">
                     <div>
-                      <div className="text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-cyan-400 mb-2 font-mono">
+                      <div className="text-3xl font-extrabold text-indigo-600 mb-1 font-mono tracking-tight">
                         {metric.stat}
                       </div>
-                      <div className="text-sm font-bold text-white mb-2">{metric.title}</div>
+                      <div className="text-sm font-bold text-slate-900 mb-1.5">{metric.title}</div>
                     </div>
-                    <p className="text-xs text-slate-400 leading-relaxed">{metric.desc}</p>
+                    <p className="text-xs text-slate-500 leading-relaxed">{metric.desc}</p>
                   </div>
                 </Card3DTilt>
               </FadeIn>
@@ -308,18 +305,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3D TESTIMONIALS */}
-      <section id="testimonials" className="py-28 px-6 relative">
-        <div className="max-w-6xl mx-auto space-y-14">
+      {/* TESTIMONIALS */}
+      <section id="testimonials" className="py-20 px-6 relative bg-[#fafafa]">
+        <div className="max-w-6xl mx-auto space-y-12">
           <FadeIn>
-            <div className="text-center space-y-4 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-800 text-indigo-300 text-xs font-semibold uppercase tracking-wider">
-                <Star className="w-3.5 h-3.5 text-amber-400 fill-amber-400" /> Real Creator Results
+            <div className="text-center space-y-3 max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 text-amber-800 text-xs font-semibold">
+                <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" /> Real Creator Results
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Trusted by Creators with Millions of Views
               </h2>
-              <p className="text-slate-400 text-base sm:text-lg">
+              <p className="text-slate-600 text-sm sm:text-base">
                 See how top operators replaced fragile workflows with CreatorFlow's systematic production matrix.
               </p>
             </div>
@@ -332,41 +329,41 @@ export default function Home() {
       </section>
 
       {/* FAQ SECTION */}
-      <section id="faq" className="py-28 px-6 border-t border-indigo-950/60">
-        <div className="max-w-4xl mx-auto space-y-12">
+      <section id="faq" className="py-20 px-6 border-t border-slate-200/80 bg-white">
+        <div className="max-w-3xl mx-auto space-y-10">
           <FadeIn>
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+            <div className="text-center space-y-3">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                 Frequently Asked Questions
               </h2>
-              <p className="text-slate-400 text-base">
+              <p className="text-slate-600 text-sm">
                 Everything you need to know about CreatorFlow's AI production architecture.
               </p>
             </div>
           </FadeIn>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
                 <FadeIn key={idx} delay={idx * 0.05}>
                   <div
-                    className={`rounded-2xl border transition-all ${
+                    className={`rounded-xl border transition-all ${
                       isOpen
-                        ? "bg-slate-900/80 border-indigo-500/40 shadow-lg shadow-indigo-950/30"
-                        : "bg-slate-900/40 border-indigo-950 hover:border-indigo-900"
+                        ? "bg-slate-50/70 border-indigo-200 shadow-xs"
+                        : "bg-white border-slate-200/80 hover:border-slate-300"
                     }`}
                   >
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full p-6 text-left flex items-center justify-between gap-4"
+                      className="w-full p-5 text-left flex items-center justify-between gap-4"
                     >
-                      <span className="text-base sm:text-lg font-bold text-white">
+                      <span className="text-base font-bold text-slate-900">
                         {faq.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-indigo-400 transition-transform duration-300 flex-shrink-0 ${
-                          isOpen ? "rotate-180" : ""
+                        className={`w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0 ${
+                          isOpen ? "rotate-180 text-indigo-600" : ""
                         }`}
                       />
                     </button>
@@ -377,7 +374,7 @@ export default function Home() {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.2 }}
-                          className="px-6 pb-6 text-slate-300 text-sm leading-relaxed"
+                          className="px-5 pb-5 text-slate-600 text-sm leading-relaxed"
                         >
                           {faq.a}
                         </motion.div>
@@ -391,74 +388,70 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FINAL HIGH-CONVERSION 3D CTA */}
-      <section className="py-32 px-6 relative overflow-hidden border-t border-indigo-950/60">
-        <div className="absolute inset-0 bg-radial-vignette pointer-events-none" />
-        
-        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+      {/* FINAL CALL TO ACTION — MINIMAL LIGHT */}
+      <section className="py-24 px-6 relative border-t border-slate-200/80 bg-[#f8fafc]">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
           <FadeIn>
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-400 p-[1px] mx-auto shadow-2xl shadow-indigo-600/40">
-              <div className="w-full h-full bg-[#080d1a] rounded-[15px] flex items-center justify-center">
-                <Sparkles className="w-8 h-8 text-indigo-400" />
-              </div>
+            <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-150 flex items-center justify-center text-indigo-600 mx-auto shadow-xs">
+              <Sparkles className="w-6 h-6" />
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white leading-tight">
-              Ready to Upgrade From a Hobbyist <br />
-              to an <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-indigo-400 to-cyan-300">Infinite Studio</span>?
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-950 leading-tight">
+              Ready to Upgrade to an <br className="hidden sm:block" />
+              <span className="text-indigo-600">Automated Content Engine</span>?
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="text-slate-300 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-              Stop letting brilliant ideas die in messy notes. Deploy your CreatorFlow workspace now and produce with military precision.
+            <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+              Stop letting ideas die in messy notes. Deploy your CreatorFlow workspace now and produce with repeatable consistency.
             </p>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <a
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <Link
                 href="/signup"
-                className="w-full sm:w-auto px-9 py-4 bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-extrabold text-sm rounded-xl transition-all shadow-2xl shadow-indigo-600/40 flex items-center justify-center gap-2 hover:scale-[1.02]"
+                className="w-full sm:w-auto px-7 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-all shadow-xs flex items-center justify-center gap-2 active:scale-[0.98]"
               >
                 <span>Deploy Workspace For Free</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/login"
-                className="w-full sm:w-auto px-8 py-4 bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-bold text-sm rounded-xl border border-indigo-900/60 transition-all flex items-center justify-center"
+                className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm rounded-xl border border-slate-200 shadow-xs transition-all flex items-center justify-center active:scale-[0.98]"
               >
                 Sign In to Account
-              </a>
+              </Link>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-indigo-950/80 py-14 px-6 bg-[#04060c] text-sm text-slate-400">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      {/* FOOTER — MINIMAL LIGHT */}
+      <footer className="border-t border-slate-200 py-10 px-6 bg-white text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           
-          <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-lg bg-indigo-600/30 border border-indigo-500/40 flex items-center justify-center">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          <div className="flex items-center gap-2.5">
+            <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center">
+              <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-white tracking-tight">CreatorFlow AI Inc.</span>
-            <span className="text-xs text-slate-600 font-mono">v3.0.4</span>
+            <span className="font-bold text-slate-900 tracking-tight text-sm">CreatorFlow AI</span>
+            <span className="text-[11px] text-slate-400 font-mono">v0.2.0</span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-8 text-xs font-medium">
-            <a href="#simulator" className="hover:text-white transition-colors">Workflow Simulator</a>
-            <a href="#features" className="hover:text-white transition-colors">Platform</a>
-            <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
-            <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
+          <div className="flex flex-wrap items-center justify-center gap-6 font-medium text-slate-600">
+            <a href="#simulator" className="hover:text-slate-900 transition-colors">Simulator</a>
+            <a href="#features" className="hover:text-slate-900 transition-colors">Platform</a>
+            <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
           </div>
 
-          <div className="text-xs text-slate-500 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse" />
-            All Systems Operational • © {new Date().getFullYear()} CreatorFlow AI.
+          <div className="flex items-center gap-2 text-slate-500">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
+            All Systems Operational • © {new Date().getFullYear()} CreatorFlow AI
           </div>
         </div>
       </footer>

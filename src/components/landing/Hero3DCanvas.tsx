@@ -10,9 +10,9 @@ export default function Hero3DCanvas() {
     const container = containerRef.current;
     if (!container) return;
 
-    // SCENE SETUP
+    // SCENE SETUP (Soft Minimal Light Atmosphere)
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x060913, 0.028);
+    scene.fog = new THREE.FogExp2(0xf8fafc, 0.022);
 
     const camera = new THREE.PerspectiveCamera(
       55,
@@ -30,41 +30,42 @@ export default function Hero3DCanvas() {
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.35;
+    renderer.toneMappingExposure = 1.2;
     container.appendChild(renderer.domElement);
 
-    // STUDIO LIGHTING SETUP (Warm Key, Cool Rim, Ambient Fill)
-    const ambientLight = new THREE.AmbientLight(0x0f172a, 1.2);
+    // STUDIO LIGHTING SETUP (Airy daylight ambiance)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2.2);
     scene.add(ambientLight);
 
-    const keyLight = new THREE.DirectionalLight(0x818cf8, 2.5);
+    const keyLight = new THREE.DirectionalLight(0xc7d2fe, 2.0);
     keyLight.position.set(12, 16, 10);
     scene.add(keyLight);
 
-    const warmRim = new THREE.PointLight(0xf97316, 3.2, 50);
+    const warmRim = new THREE.PointLight(0xfef3c7, 1.8, 50);
     warmRim.position.set(-14, 8, -6);
     scene.add(warmRim);
 
-    const coolFill = new THREE.PointLight(0x06b6d4, 3.5, 60);
+    const coolFill = new THREE.PointLight(0xe0f2fe, 2.0, 60);
     coolFill.position.set(16, -6, 4);
     scene.add(coolFill);
 
-    // 1. PROCEDURAL 3D KINETIC RIBBON SURFACE (Simulating Audio/Video timeline waveform)
+    // 1. PROCEDURAL 3D KINETIC RIBBON SURFACE (Frosted Soft Light Ribbon)
     const gridX = 70;
     const gridY = 32;
     const waveGeom = new THREE.PlaneGeometry(36, 16, gridX, gridY);
     waveGeom.rotateX(-Math.PI * 0.42);
 
-    // Create custom wave mesh with rich studio material
+    // Create custom wave mesh with light frosted material
     const waveMat = new THREE.MeshStandardMaterial({
-      color: 0x0f172a,
-      emissive: 0x1e1b4b,
-      emissiveIntensity: 0.35,
-      roughness: 0.35,
-      metalness: 0.85,
+      color: 0xf1f5f9,
+      emissive: 0xe0e7ff,
+      emissiveIntensity: 0.15,
+      roughness: 0.4,
+      metalness: 0.2,
       wireframe: false,
       flatShading: false,
     });
+
     const waveMesh = new THREE.Mesh(waveGeom, waveMat);
     waveMesh.position.set(0, -5, -4);
     scene.add(waveMesh);
@@ -72,10 +73,9 @@ export default function Hero3DCanvas() {
     // Precision Wireframe overlay on the wave for engineering aesthetic
     const wireGeom = new THREE.WireframeGeometry(waveGeom);
     const wireMat = new THREE.LineBasicMaterial({
-      color: 0x6366f1,
+      color: 0x94a3b8,
       transparent: true,
-      opacity: 0.18,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.12,
     });
     const wireMesh = new THREE.LineSegments(wireGeom, wireMat);
     waveMesh.add(wireMesh);
@@ -91,23 +91,22 @@ export default function Hero3DCanvas() {
     const studioGroup = new THREE.Group();
     scene.add(studioGroup);
 
-    // Cinematic Aperture / Lens Rings (Precision Machined Brass & Obsidian)
+    // Cinematic Aperture / Lens Rings (Precision Light Pearl & Glass)
     const ringGroup = new THREE.Group();
     studioGroup.add(ringGroup);
 
     const apertureMat = new THREE.MeshStandardMaterial({
-      color: 0x18181b,
-      metalness: 0.95,
-      roughness: 0.18,
-      emissive: 0x312e81,
-      emissiveIntensity: 0.25,
+      color: 0xe2e8f0,
+      metalness: 0.4,
+      roughness: 0.25,
+      emissive: 0xf1f5f9,
+      emissiveIntensity: 0.1,
     });
 
     const lensAccentMat = new THREE.MeshBasicMaterial({
-      color: 0x38bdf8,
+      color: 0x6366f1,
       transparent: true,
-      opacity: 0.7,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.35,
     });
 
     // Primary Gimbal Outer Ring
@@ -126,22 +125,23 @@ export default function Hero3DCanvas() {
     innerRing.rotation.x = Math.PI / 3;
     ringGroup.add(innerRing);
 
-    // Floating Glass Prism Core (Refractive Studio Prism)
+    // Floating Glass Prism Core (Translucent Frosted Lens)
     const prismGeom = new THREE.OctahedronGeometry(1.9, 0);
     const prismMat = new THREE.MeshPhysicalMaterial({
-      color: 0x6366f1,
-      emissive: 0x4f46e5,
-      emissiveIntensity: 0.4,
-      metalness: 0.1,
-      roughness: 0.1,
-      transmission: 0.85,
-      thickness: 1.8,
+      color: 0xa5b4fc,
+      emissive: 0xe0e7ff,
+      emissiveIntensity: 0.2,
+      metalness: 0.05,
+      roughness: 0.08,
+      transmission: 0.92,
+      thickness: 1.5,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.65,
       reflectivity: 0.9,
     });
     const prism = new THREE.Mesh(prismGeom, prismMat);
     studioGroup.add(prism);
+
 
     // 3. CINEMATIC FLOATING DATA BEACONS & TIME NODES
     const beaconCount = 20;

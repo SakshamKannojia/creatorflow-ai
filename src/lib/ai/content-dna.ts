@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { z } from "zod";
 import { ContentDNA } from "@/types/database";
+import { logger } from "@/lib/logger";
 
 export const ContentDnaResultSchema = z.object({
   tone: z.string(),
@@ -120,7 +121,8 @@ Return ONLY a valid JSON object matching this schema:
     const parsed = extractJSON(text);
     return ContentDnaResultSchema.parse(parsed);
   } catch (error) {
-    console.error("Gemini Content DNA analysis error:", error);
+    logger.error("Gemini Content DNA analysis error", { error });
     return analyzeFallbackStyle(samples);
   }
 }
+

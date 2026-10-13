@@ -1,0 +1,350 @@
+openapi: 3.1.0
+info:
+  title: CreatorFlow AI API
+  description: |
+    Internal API for the CreatorFlow AI platform.
+    All endpoints require same-origin requests in production.
+    Rate limiting is enforced via token-bucket per IP (see headers below).
+  version: 0.2.0
+  contact:
+    name: CreatorFlow AI
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:3000/api
+    description: Local development server
+  - url: https://creatorflow.ai/api
+    description: Production server
+
+tags:
+  - name: AI
+    description: AI content generation and transformation endpoints
+  - name: Health
+    description: Service health and observability
+
+paths:
+  /health:
+    get:
+      tags: [Health]
+      summary: Service health check
+      description: |
+        Returns the health status of all external dependencies.
+        Used by uptime monitors (BetterUptime, Checkly).
+        Response is never cached.
+      operationId: getHealth
+      responses:
+        '200':
+          description: All services ok or degraded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: One or more services are down
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /generate:
+    post:
+      tags: [AI]
+      summary: Generate AI content
+      description: |
+        Generates platform-specific content using Google Gemini.
+        Falls back to high-quality template content if API key is not configured.
+        
+        **Rate limit:** 20 requests/minute per IP.
+      operationId: generateContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateRequest'
+            examples:
+              instagram_caption:
+                summary: Instagram caption generation
+                value:
+                  payload:
+                    topic: "Morning productivity habits"
+                    platform: "Instagram"
+                    contentType: "Caption"
+                    tone: "Casual"
+                    language: "English"
+                    length: "Medium"
+                    cta: "Soft"
+      responses:
+        '200':
+          description: Content generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          headers:
+            Retry-After:
+              schema:
+                type: integer
+              description: Seconds until rate limit resets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /rewrite:
+    post:
+      tags: [AI]
+      summary: Rewrite existing content
+      description: |
+        Applies a transformation instruction to existing content.
+        10 distinct rewrite modes available.
+        
+        **Rate limit:** 30 requests/minute per IP.
+      operationId: rewriteContent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RewriteRequest'
+      responses:
+        '200':
+          description: Content rewritten successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RewriteResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /content-dna:
+    post:
+      tags: [AI]
+      summary: Analyze and build Content DNA profile
+      description: |
+        Analyzes a creator's existing content samples to build a
+        personalized Content DNA profile that powers future generations.
+        
+        **Rate limit:** 10 requests/minute per IP.
+      operationId: analyzeContentDna
+      responses:
+        '200':
+          description: Content DNA profile generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+
+components:
+  schemas:
+    Platform:
+      type: string
+      enum: [Instagram, LinkedIn, YouTube, X]
+
+    ContentType:
+      type: string
+      enum: [Caption, "Reel Script", Carousel, "LinkedIn Post", "YouTube Description", "Content Idea"]
+
+    Tone:
+      type: string
+      enum: [Professional, Casual, Cinematic, Funny, Educational, Gen-Z, Storytelling]
+
+    Language:
+      type: string
+      enum: [English, Hinglish, Hindi]
+
+    GenerateRequest:
+      type: object
+      required: [payload]
+      properties:
+        payload:
+          type: object
+          required: [topic, platform, contentType, tone, language, length, cta]
+          properties:
+            topic:
+              type: string
+              minLength: 2
+              description: The main topic or subject for content generation
+              example: "Morning productivity habits"
+            platform:
+              $ref: '#/components/schemas/Platform'
+            contentType:
+              $ref: '#/components/schemas/ContentType'
+            tone:
+              $ref: '#/components/schemas/Tone'
+            language:
+              $ref: '#/components/schemas/Language'
+            targetAudience:
+              type: string
+              description: Optional target audience descriptor
+            length:
+              type: string
+              enum: [Short, Medium, Long]
+            cta:
+              type: string
+              enum: [None, Soft, Direct]
+            keywords:
+              type: array
+              items:
+                type: string
+            reelDuration:
+              type: string
+              enum: ["15 seconds", "30 seconds", "60 seconds"]
+            reelFormat:
+              type: string
+              enum: ["Talking Head", Faceless, Cinematic, Tutorial, Storytelling]
+            useContentDna:
+              type: boolean
+        dna:
+          type: object
+          nullable: true
+          description: Optional Content DNA profile to personalize the generation
+
+    GenerateResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+          properties:
+            title:
+              type: string
+            hook:
+              type: string
+            mainContent:
+              type: string
+            cta:
+              type: string
+            hashtags:
+              type: array
+              items:
+                type: string
+            voiceover:
+              type: string
+            onScreenText:
+              type: string
+            bRollSuggestions:
+              type: array
+              items:
+                type: string
+            reelScenes:
+              type: array
+              items:
+                type: object
+                properties:
+                  scene_number:
+                    type: integer
+                  visual:
+                    type: string
+                  voiceover:
+                    type: string
+                  on_screen_text:
+                    type: string
+                  b_roll:
+                    type: string
+
+    RewriteRequest:
+      type: object
+      required: [content, instruction]
+      properties:
+        content:
+          type: string
+          minLength: 5
+          description: The content to rewrite
+        instruction:
+          type: string
+          enum:
+            - "Make shorter"
+            - "Make longer"
+            - "Improve hook"
+            - "Improve CTA"
+            - "Make more professional"
+            - "Make more cinematic"
+            - "Make more engaging"
+            - "Make Gen-Z"
+            - "Convert to Hinglish"
+            - "Convert to LinkedIn style"
+        platform:
+          $ref: '#/components/schemas/Platform'
+
+    RewriteResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded, down]
+        version:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+        uptime:
+          type: number
+          description: Process uptime in seconds
+        services:
+          type: object
+          properties:
+            api:
+              $ref: '#/components/schemas/ServiceStatus'
+            supabase:
+              $ref: '#/components/schemas/ServiceStatus'
+            gemini:
+              $ref: '#/components/schemas/ServiceStatus'
+
+    ServiceStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ok, degraded, down]
+        latencyMs:
+          type: number
+        message:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        details:
+          type: object

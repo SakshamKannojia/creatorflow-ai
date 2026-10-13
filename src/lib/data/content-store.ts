@@ -7,6 +7,8 @@ import {
   Platform,
   ContentType,
 } from "@/types/database";
+import { logger } from "@/lib/logger";
+import { sanitizeHtml, sanitizePlainText } from "@/lib/sanitize";
 
 const LOCAL_CONTENT_KEY = "creatorflow_content_items";
 const LOCAL_DNA_KEY = "creatorflow_content_dna";
@@ -191,11 +193,15 @@ export async function saveContent(
 ): Promise<ContentItem> {
   const supabase = createClient();
   const now = new Date().toISOString();
-  const id = payload.id || crypto.randomUUID ? crypto.randomUUID() : "content-" + Date.now();
+  const id = payload.id || (typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : "content-" + Date.now());
 
   const newRecord: ContentItem = {
     ...payload,
     id,
+    title: sanitizePlainText(payload.title),
+    hook: payload.hook ? sanitizePlainText(payload.hook) : payload.hook,
+    cta: payload.cta ? sanitizePlainText(payload.cta) : payload.cta,
+    content: sanitizeHtml(payload.content),
     created_at: now,
     updated_at: now,
   };
@@ -209,10 +215,14 @@ export async function saveContent(
         .single();
 
       if (!error && data) {
+        logger.info("Saved content item to Supabase", { id });
         return data as ContentItem;
       }
+      if (error) {
+        logger.warn("Supabase upsert returned error, falling back to local", { error });
+      }
     } catch (err) {
-      console.error("Supabase save content error:", err);
+      logger.error("Supabase save content error", { error: err });
     }
   }
 
@@ -235,22 +245,33 @@ export async function updateContent(
   const supabase = createClient();
   const now = new Date().toISOString();
 
+  const sanitizedUpdates: Partial<ContentItem> = {
+    ...updates,
+    ...(updates.title !== undefined ? { title: sanitizePlainText(updates.title) } : {}),
+    ...(updates.hook !== undefined ? { hook: sanitizePlainText(updates.hook) } : {}),
+    ...(updates.cta !== undefined ? { cta: sanitizePlainText(updates.cta) } : {}),
+    ...(updates.content !== undefined ? { content: sanitizeHtml(updates.content) } : {}),
+    updated_at: now,
+  };
+
   if (isSupabaseConfigured) {
     try {
       const { data, error } = await supabase
         .from("content")
-        .update({ ...updates, updated_at: now })
+        .update(sanitizedUpdates)
         .eq("id", id)
         .select()
         .single();
 
       if (!error && data) {
+        logger.info("Updated content item in Supabase", { id });
         return data as ContentItem;
       }
     } catch (err) {
-      console.error("Supabase update content error:", err);
+      logger.error("Supabase update content error", { error: err });
     }
   }
+
 
   const current = getLocalItems<ContentItem[]>(LOCAL_CONTENT_KEY, INITIAL_DEMO_CONTENT);
   const index = current.findIndex((c) => c.id === id);

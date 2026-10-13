@@ -6,6 +6,8 @@ import {
   ContentDNA,
 } from "@/types/database";
 import { buildContentPrompt } from "./prompts";
+import { logger } from "@/lib/logger";
+
 
 const ReelSceneSchema = z.object({
   scene_number: z.number(),
@@ -203,8 +205,9 @@ export async function generateContentWithGemini(
 
     return validated;
   } catch (error) {
-    console.error("Gemini API generation error:", error);
+    logger.error("Gemini API generation error", { error });
     // Graceful fallback if quota or network issue occurs
     return generateFallbackContent(payload, dna);
   }
 }
+

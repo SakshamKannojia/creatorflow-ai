@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, CheckCircle, TrendingUp } from "lucide-react";
+import { Star, TrendingUp } from "lucide-react";
 import Card3DTilt from "./Card3DTilt";
 
 export default function Testimonials3D() {
@@ -21,7 +21,7 @@ export default function Testimonials3D() {
       handle: "@elenacodes",
       channel: "420K Followers on TikTok & IG",
       metric: "From 1 Video/Week to 5/Week",
-      avatarBg: "bg-cyan-600",
+      avatarBg: "bg-sky-600",
       initials: "ER",
       quote:
         "The Content DNA calibration is terrifyingly accurate. It doesn't sound like robotic copy; it captures my exact punchy sentence structure and dry humor. Absolute game changer.",
@@ -31,7 +31,7 @@ export default function Testimonials3D() {
       handle: "@davidgrowth",
       channel: "Founder, SaaS Weekly (180K Subs)",
       metric: "$42K Inbound ARR from Organic",
-      avatarBg: "bg-blue-600",
+      avatarBg: "bg-violet-600",
       initials: "DS",
       quote:
         "We replaced three separate apps (Notion, an AI copywriter, and our teleprompter) with just CreatorFlow. It operates like linear production software for serious creators.",
@@ -41,12 +41,12 @@ export default function Testimonials3D() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
       {testimonials.map((t) => (
-        <Card3DTilt key={t.handle} intensity={10} glareOpacity={0.18} className="h-full">
-          <div className="h-full rounded-2xl p-7 border border-indigo-500/20 bg-gradient-to-br from-[#0c1224] to-[#070b14] flex flex-col justify-between shadow-xl shadow-indigo-950/20">
+        <Card3DTilt key={t.handle} intensity={8} glareOpacity={0.06} className="h-full">
+          <div className="h-full rounded-2xl p-7 border border-slate-200/90 bg-white flex flex-col justify-between shadow-[0_4px_25px_-5px_rgba(0,0,0,0.04)]">
             <div>
               {/* Metric Tag */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-6">
-                <TrendingUp className="w-3.5 h-3.5" />
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-800 text-xs font-semibold mb-5">
+                <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
                 {t.metric}
               </div>
 
@@ -58,24 +58,25 @@ export default function Testimonials3D() {
               </div>
 
               {/* Quote */}
-              <p className="text-slate-300 text-sm leading-relaxed mb-6 italic">
-                "{t.quote}"
+              <p className="text-slate-700 text-sm leading-relaxed mb-6 font-normal">
+                &quot;{t.quote}&quot;
               </p>
             </div>
 
             {/* Author */}
-            <div className="flex items-center gap-3 pt-4 border-t border-indigo-950">
+            <div className="flex items-center gap-3 pt-5 border-t border-slate-100">
               <div
-                className={`w-10 h-10 rounded-full ${t.avatarBg} text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-md`}
+                className={`w-10 h-10 rounded-full ${t.avatarBg} text-white font-bold text-xs flex items-center justify-center flex-shrink-0 shadow-xs`}
               >
                 {t.initials}
               </div>
-              <div>
-                <div className="text-sm font-bold text-white flex items-center gap-1.5">
+              <div className="min-w-0">
+                <div className="text-sm font-bold text-slate-900 truncate">
                   {t.name}
-                  <CheckCircle className="w-3.5 h-3.5 text-blue-400 fill-blue-400/20" />
                 </div>
-                <div className="text-xs text-slate-400">{t.channel}</div>
+                <div className="text-xs text-slate-500 truncate">
+                  {t.handle} • {t.channel}
+                </div>
               </div>
             </div>
           </div>

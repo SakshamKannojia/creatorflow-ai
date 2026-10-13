@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { z } from "zod";
 import { RewriteRequestPayload } from "@/types/database";
+import { logger } from "@/lib/logger";
 
 export const RewriteResponseSchema = z.object({
   rewrittenContent: z.string(),
@@ -118,7 +119,7 @@ Rules:
     const parsed = extractJSON(text);
     return RewriteResponseSchema.parse(parsed);
   } catch (error) {
-    console.error("Gemini AI rewrite error:", error);
+    logger.error("Gemini AI rewrite error", { error });
     return rewriteFallback(payload.content, payload.instruction);
   }
 }
