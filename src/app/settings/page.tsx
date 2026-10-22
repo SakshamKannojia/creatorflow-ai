@@ -74,7 +74,7 @@ export default function SettingsPage() {
                 label="Creator / Channel Name"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="e.g. Alex Vance"
+                placeholder="Enter your name or channel"
               />
 
               <Input
@@ -138,16 +138,16 @@ export default function SettingsPage() {
               </span>
             </div>
 
-            {/* Google Gemini AI Status */}
+            {/* AI Generation Engine Status */}
             <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-emerald-400" />
                 <div>
                   <h3 className="text-xs font-semibold text-white">
-                    Google Gemini 1.5 Pro/Flash Integration
+                    AI Content Generation Engine
                   </h3>
                   <p className="text-[11px] text-slate-400">
-                    Server-side prompt synthesis with structured JSON parsing & Content DNA adapter
+                    Server-side prompt synthesis with structured JSON parsing &amp; Content DNA adapter
                   </p>
                 </div>
               </div>

@@ -22,7 +22,7 @@ export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
     <div
       role="tablist"
       className={cn(
-        "flex items-center gap-1.5 p-1 bg-slate-900/90 border border-slate-800 rounded-xl overflow-x-auto",
+        "flex items-center gap-1.5 p-1 bg-[#f0ebe2] border border-[#d8cdb8] rounded-xl overflow-x-auto",
         className
       )}
     >
@@ -37,8 +37,8 @@ export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
             className={cn(
               "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-150 whitespace-nowrap select-none",
               isActive
-                ? "bg-indigo-600 text-white shadow-sm"
-                : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/60"
+                ? "bg-[#7c5533] text-white shadow-sm"
+                : "text-[#6b5744] hover:text-[#1c1611] hover:bg-[#e8dece]"
             )}
           >
             {tab.icon && <span className="w-3.5 h-3.5 shrink-0">{tab.icon}</span>}
@@ -49,7 +49,7 @@ export function Tabs({ tabs, activeTab, onChange, className }: TabsProps) {
                   "px-1.5 py-0.2 rounded-full text-[10px] font-semibold",
                   isActive
                     ? "bg-white/20 text-white"
-                    : "bg-slate-800 text-slate-400"
+                    : "bg-[#d8cdb8] text-[#6b5744]"
                 )}
               >
                 {tab.count}

@@ -409,7 +409,7 @@ export default function ContentDnaPage() {
                 Train Your Content DNA
               </h2>
               <p className="text-xs text-slate-400 mt-1 max-w-xl">
-                Paste 3 to 10 examples of your previous captions, LinkedIn posts, or video scripts. Gemini will inspect your vocabulary, rhythm, hook construction, and personality.
+                Paste 3 to 10 examples of your previous captions, LinkedIn posts, or video scripts. Our AI engine will inspect your vocabulary, rhythm, hook construction, and personality.
               </p>
             </div>
 
@@ -477,7 +477,7 @@ export default function ContentDnaPage() {
               className="w-full sm:w-auto shadow-indigo-500/20"
             >
               <Sparkles className="w-4 h-4 mr-2" />
-              Analyze My Style with Gemini
+              Analyze My Style with AI
             </Button>
           </div>
         </div>

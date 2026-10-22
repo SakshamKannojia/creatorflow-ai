@@ -4,54 +4,38 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-import { 
-  Sparkles, 
-  ArrowRight, 
-  Play, 
-  Layers, 
-  Star, 
-  Menu, 
-  X, 
-  ChevronDown, 
-  Cpu
+import {
+  Sparkles,
+  ArrowRight,
+  Play,
+  Layers,
+  Menu,
+  X,
+  ChevronDown,
+  Cpu,
 } from "lucide-react";
 
-import Hero3DCanvas from "@/components/landing/Hero3DCanvas";
 import Hero3DStudio from "@/components/landing/Hero3DStudio";
 import InteractiveWorkflowSimulator from "@/components/landing/InteractiveWorkflowSimulator";
 import Bento3DShowcase from "@/components/landing/Bento3DShowcase";
-import Testimonials3D from "@/components/landing/Testimonials3D";
-import Card3DTilt from "@/components/landing/Card3DTilt";
-
-const FadeIn = ({ 
-  children, 
-  className = ""
-}: { 
-  children: React.ReactNode; 
-  delay?: number; 
-  direction?: "up" | "left" | "right" | "none";
-  className?: string;
-}) => {
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
-};
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const onScroll = () => setScrolled(window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center text-indigo-600">
-        <div className="w-7 h-7 border-2 border-indigo-600 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#faf8f5] flex items-center justify-center">
+        <div className="w-5 h-5 border-[1.5px] border-amber-200 border-t-amber-600 rounded-full animate-spin" />
       </div>
     );
   }
@@ -59,399 +43,307 @@ export default function Home() {
   const faqs = [
     {
       q: "How does CreatorFlow's Content DNA differ from regular AI chatbots?",
-      a: "Generic AI chatbots output repetitive, robotic copy that sounds identical across every user. CreatorFlow's Content DNA extracts your exact sentence cadence, vocabulary rules, banned cliches, and storytelling structure, ensuring every generated script sounds indistinguishable from your own writing."
+      a: "Generic AI chatbots output repetitive, robotic copy identical across every user. CreatorFlow's Content DNA extracts your exact sentence cadence, vocabulary rules, banned clichés, and storytelling structure — ensuring every generated script sounds indistinguishable from your own writing.",
     },
     {
       q: "Can I export directly into my production and editing workflows?",
-      a: "Yes! You can export your scripts, visual blueprints, and shot lists directly to Notion, Markdown, Google Docs, or copy them formatted with one click for easy recording and teleprompter apps."
+      a: "Yes. Export scripts, visual blueprints, and shot lists to Notion, Markdown, Google Docs, or copy them formatted with one click for recording and teleprompter apps.",
     },
     {
       q: "What video formats are supported?",
-      a: "CreatorFlow specializes in short-form and high-retention video: YouTube Shorts, Instagram Reels, TikTok, LinkedIn Video, as well as multi-part longform YouTube outlines with visual B-roll cues."
+      a: "CreatorFlow specializes in short-form and high-retention video: YouTube Shorts, Instagram Reels, TikTok, LinkedIn Video, as well as multi-part longform YouTube outlines with visual B-roll cues.",
     },
     {
       q: "Is there a free trial to test the workflow?",
-      a: "Yes, you can sign up and start generating right away without a credit card. You'll get instant access to the Script Generator, Content DNA calibration, and production pipeline."
-    }
+      a: "Yes. Sign up and start generating right away without a credit card. You'll get instant access to the Script Generator, Content DNA calibration, and production pipeline.",
+    },
+  ];
+
+  const metrics = [
+    { stat: "+340%", title: "Viewer Retention", desc: "Hooks engineered against 2.4M viral short-form videos." },
+    { stat: "4.2×",  title: "Faster Turnaround", desc: "From idea to ready-to-shoot blueprint in under 3 minutes." },
+    { stat: "Zero",  title: "Creative Burnout", desc: "Infinite pipeline of high-intent topics calibrated to your DNA." },
+    { stat: "100%",  title: "Voice Consistency", desc: "Every word follows your custom tone, pace, and rhythm." },
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-indigo-500/20 selection:text-indigo-900 relative overflow-x-hidden bg-dot-pattern">
-      
-      {/* Soft Ethereal 3D WebGL Background Layer */}
-      <Hero3DCanvas />
+    <div className="min-h-screen bg-[#faf8f5] text-[#1c1611] font-sans selection:bg-amber-200 selection:text-amber-900 overflow-x-hidden">
 
-      {/* Ambient Pastel Glows */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[550px] bg-gradient-to-b from-indigo-100/50 via-sky-50/40 to-transparent blur-[140px] pointer-events-none -z-10" />
-      <div className="fixed top-[55vh] -left-[200px] w-[600px] h-[600px] bg-indigo-50/50 blur-[150px] pointer-events-none -z-10" />
+      {/* ── NAV ── */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        scrolled
+          ? "bg-[#faf8f5]/95 backdrop-blur-sm border-b border-[#e8dece] shadow-[0_1px_0_0_rgba(162,100,40,0.06)]"
+          : "bg-[#faf8f5]/80 backdrop-blur-sm"
+      }`}>
+        <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
 
-      {/* TOP NAVIGATION — MINIMAL LIGHT */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/85 backdrop-blur-xl border-b border-slate-200/80 transition-all">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center shadow-xs">
-              <Sparkles className="w-4 h-4 text-white" />
+          <Link href="/" className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-lg bg-amber-600 flex items-center justify-center shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-white" />
             </div>
-            <div>
-              <span className="font-bold text-base tracking-tight text-slate-900 flex items-center gap-1">
-                CreatorFlow <span className="text-indigo-600 font-mono text-xs">AI</span>
-              </span>
-            </div>
+            <span className="font-semibold text-sm tracking-tight text-[#1c1611]">
+              CreatorFlow <span className="text-amber-700/60 font-normal">AI</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav Items */}
-          <div className="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
-            <a href="#simulator" className="hover:text-slate-900 transition-colors">
-              Simulator
-            </a>
-            <a href="#features" className="hover:text-slate-900 transition-colors">
-              Features
-            </a>
-            <a href="#testimonials" className="hover:text-slate-900 transition-colors">
-              Creators
-            </a>
-            <a href="#faq" className="hover:text-slate-900 transition-colors">
-              FAQ
-            </a>
+          <div className="hidden md:flex items-center gap-6 text-sm text-[#6b5744]">
+            <a href="#simulator" className="hover:text-[#1c1611] transition-colors">Simulator</a>
+            <a href="#features"  className="hover:text-[#1c1611] transition-colors">Features</a>
+            <a href="#faq"       className="hover:text-[#1c1611] transition-colors">FAQ</a>
           </div>
 
-          {/* Nav Actions */}
-          <div className="hidden md:flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors px-3 py-2"
-            >
-              Sign In
+          <div className="hidden md:flex items-center gap-2">
+            <Link href="/login" className="text-sm text-[#6b5744] hover:text-[#1c1611] transition-colors px-3 py-1.5">
+              Sign in
             </Link>
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center px-4 py-2 text-xs font-semibold rounded-xl bg-slate-900 hover:bg-slate-800 text-white shadow-xs transition-all active:scale-[0.98] gap-1.5"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-sm font-medium rounded-lg bg-amber-600 hover:bg-amber-700 text-white transition-colors shadow-sm"
             >
-              <span>Get Started</span>
+              Get started
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
-          <button 
-            className="md:hidden text-slate-700 p-2" 
+          <button
+            className="md:hidden text-[#6b5744] p-1.5"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
-        {/* Mobile dropdown */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden border-b border-slate-200 bg-white/98 backdrop-blur-2xl px-6 py-5 space-y-4 shadow-lg"
+              className="md:hidden border-t border-[#e8dece] bg-[#faf8f5] px-6 py-5"
             >
-              <div className="flex flex-col gap-3 font-medium text-sm text-slate-700">
-                <a href="#simulator" onClick={() => setMobileMenuOpen(false)} className="py-1">Simulator</a>
-                <a href="#features" onClick={() => setMobileMenuOpen(false)} className="py-1">Features</a>
-                <a href="#testimonials" onClick={() => setMobileMenuOpen(false)} className="py-1">Creators</a>
-                <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="py-1">FAQ</a>
+              <div className="flex flex-col gap-2 text-sm text-[#6b5744]">
+                <a href="#simulator" onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-[#1c1611]">Simulator</a>
+                <a href="#features"  onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-[#1c1611]">Features</a>
+                <a href="#faq"       onClick={() => setMobileMenuOpen(false)} className="py-1 hover:text-[#1c1611]">FAQ</a>
               </div>
-              <div className="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
-                <Link href="/login" className="w-full text-center py-2.5 rounded-xl border border-slate-200 text-slate-700 text-sm font-semibold">
-                  Sign In
-                </Link>
-                <Link href="/signup" className="w-full text-center py-2.5 rounded-xl bg-slate-900 text-white text-sm font-semibold shadow-xs">
-                  Get Started
-                </Link>
+              <div className="pt-3 border-t border-[#e8dece] flex flex-col gap-2 mt-3">
+                <Link href="/login" className="w-full text-center py-2 rounded-lg border border-[#e8dece] text-[#6b5744] text-sm font-medium bg-white">Sign in</Link>
+                <Link href="/signup" className="w-full text-center py-2 rounded-lg bg-amber-600 text-white text-sm font-medium">Get started</Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </nav>
 
-      {/* HERO SECTION — MODERN MINIMAL */}
-      <section className="relative pt-32 pb-16 md:pt-44 md:pb-24 px-6 overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center space-y-6 relative z-10">
-          
-          {/* Subtle Minimal Pill Badge */}
-          <FadeIn>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs text-xs font-medium text-slate-700 mx-auto">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Creator Operating System</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-indigo-600 font-semibold">Gemini 1.5 Pro</span>
-            </div>
-          </FadeIn>
+      {/* ── HERO ── */}
+      <section className="relative pt-32 pb-16 md:pt-44 md:pb-20 px-6 bg-dot-pattern overflow-hidden">
+        {/* Warm radial glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-b from-amber-100/60 to-transparent blur-[100px] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#faf8f5] pointer-events-none" />
 
-          {/* Main Title */}
-          <FadeIn delay={0.1}>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-950 leading-[1.08]">
-              Standardize Your <br className="hidden sm:block" />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-indigo-700 to-sky-600">
-                Content Operations.
-              </span>
-            </h1>
-          </FadeIn>
+        <div className="max-w-4xl mx-auto text-center space-y-7 relative z-10">
 
-          {/* Subtitle */}
-          <FadeIn delay={0.2}>
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
-              Transform messy drafts and creative chaos into systematic, high-retention video blueprints. 
-              Calibrated with custom Content DNA for creators who publish consistently.
-            </p>
-          </FadeIn>
-
-          {/* Minimal Modern Buttons */}
-          <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3">
-              <Link
-                href="/signup"
-                className="w-full sm:w-auto px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm rounded-xl transition-all shadow-xs hover:shadow-md flex items-center justify-center gap-2 active:scale-[0.98]"
-              >
-                <span>Deploy Free Workspace</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="#simulator"
-                className="w-full sm:w-auto px-5 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-medium text-sm rounded-xl border border-slate-200/90 shadow-xs transition-all flex items-center justify-center gap-2 hover:border-slate-300 active:scale-[0.98]"
-              >
-                <Play className="w-3.5 h-3.5 text-indigo-600 fill-indigo-600/10" />
-                <span>Test Simulator</span>
-              </a>
-            </div>
-          </FadeIn>
-        </div>
-
-        {/* 3D Modern Studio Console */}
-        <FadeIn delay={0.4}>
-          <Hero3DStudio />
-        </FadeIn>
-      </section>
-
-      {/* INTERACTIVE WORKFLOW SIMULATOR SECTION */}
-      <section id="simulator" className="py-20 px-6 relative border-t border-slate-200/70 bg-white/50">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <FadeIn>
-            <div className="text-center space-y-3 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-150 text-indigo-700 text-xs font-semibold">
-                <Cpu className="w-3.5 h-3.5 text-indigo-600" /> Pipeline Playground
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Try The Production Engine Live
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
-                Pick a creator archetype below and witness how CreatorFlow parses raw ideas into Content DNA, scripted hooks, B-roll checklists, and calendar distribution.
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <InteractiveWorkflowSimulator />
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* CORE BENTO FEATURES SECTION */}
-      <section id="features" className="py-20 px-6 relative border-t border-slate-200/70 bg-[#fafafa]">
-        <div className="max-w-6xl mx-auto space-y-12">
-          <FadeIn>
-            <div className="max-w-2xl space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-150 text-indigo-700 text-xs font-semibold">
-                <Layers className="w-3.5 h-3.5 text-indigo-600" /> Architectural Advantage
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                The Operating System for Professional Creators
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
-                Eliminate blank-page syndrome and fragmented Google Docs. Everything is calibrated for maximum viewer retention.
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <Bento3DShowcase />
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* METRICS STRIP — MINIMAL LIGHT */}
-      <section className="py-16 px-6 border-y border-slate-200/80 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              { stat: "+340%", title: "Viewer Retention Rate", desc: "Hooks engineered against 2.4M viral short-form videos." },
-              { stat: "4.2x", title: "Faster Turnaround", desc: "From idea to ready-to-shoot blueprint in under 3 minutes." },
-              { stat: "Zero", title: "Creative Burnout", desc: "Infinite pipeline of high-intent topics calibrated to your DNA." },
-              { stat: "100%", title: "Voice Consistency", desc: "Every word follows your custom tone, pace, and rhythm." }
-            ].map((metric, i) => (
-              <FadeIn key={i} delay={i * 0.1}>
-                <Card3DTilt intensity={6} glareOpacity={0.05} className="h-full">
-                  <div className="p-6 rounded-2xl bg-slate-50/70 border border-slate-200/80 h-full flex flex-col justify-between shadow-xs">
-                    <div>
-                      <div className="text-3xl font-extrabold text-indigo-600 mb-1 font-mono tracking-tight">
-                        {metric.stat}
-                      </div>
-                      <div className="text-sm font-bold text-slate-900 mb-1.5">{metric.title}</div>
-                    </div>
-                    <p className="text-xs text-slate-500 leading-relaxed">{metric.desc}</p>
-                  </div>
-                </Card3DTilt>
-              </FadeIn>
-            ))}
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-[#e8dece] text-xs font-medium text-[#6b5744] shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Creator Operating System</span>
+            <span className="text-[#d4c4b0]">·</span>
+            <span className="text-amber-700 font-semibold">AI Content Engine</span>
           </div>
+
+          {/* Headline */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-[-0.03em] text-[#1c1611] leading-[1.06]">
+            Standardize your<br className="hidden sm:block" />
+            content operations.
+          </h1>
+
+          {/* Subtext */}
+          <p className="text-base sm:text-lg text-[#6b5744] max-w-xl mx-auto leading-relaxed">
+            Transform messy drafts into systematic, high-retention video blueprints — calibrated with custom Content DNA for creators who publish consistently.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-1">
+            <Link
+              href="/signup"
+              className="w-full sm:w-auto px-5 py-2.5 bg-amber-600 hover:bg-amber-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              Deploy free workspace
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+            <a
+              href="#simulator"
+              className="w-full sm:w-auto px-5 py-2.5 bg-white hover:bg-amber-50 text-[#6b5744] text-sm font-medium rounded-lg border border-[#e8dece] transition-colors flex items-center justify-center gap-2"
+            >
+              <Play className="w-3.5 h-3.5 text-amber-600" />
+              Test simulator
+            </a>
+          </div>
+
+          <p className="text-xs text-[#9c836a]">
+            No credit card required · Free to get started
+          </p>
+        </div>
+
+        <div className="relative z-10">
+          <Hero3DStudio />
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section id="testimonials" className="py-20 px-6 relative bg-[#fafafa]">
+      {/* ── METRICS ── */}
+      <section className="py-14 px-6 border-y border-[#e8dece] bg-white">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-[#e8dece] border border-[#e8dece] rounded-2xl overflow-hidden">
+          {metrics.map((m, i) => (
+            <div key={i} className="px-8 py-7 flex flex-col gap-1 bg-white hover:bg-amber-50/40 transition-colors">
+              <div className="text-2xl font-black tracking-tight text-amber-700">{m.stat}</div>
+              <div className="text-xs font-bold text-[#1c1611] uppercase tracking-wide">{m.title}</div>
+              <p className="text-xs text-[#9c836a] leading-relaxed mt-0.5">{m.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SIMULATOR ── */}
+      <section id="simulator" className="py-20 px-6 bg-[#faf8f5]">
         <div className="max-w-6xl mx-auto space-y-12">
-          <FadeIn>
-            <div className="text-center space-y-3 max-w-2xl mx-auto">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/60 text-amber-800 text-xs font-semibold">
-                <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" /> Real Creator Results
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Trusted by Creators with Millions of Views
-              </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
-                See how top operators replaced fragile workflows with CreatorFlow's systematic production matrix.
-              </p>
+          <div className="space-y-3 max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200 text-amber-800 text-xs font-medium">
+              <Cpu className="w-3.5 h-3.5" />
+              Pipeline Playground
             </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <Testimonials3D />
-          </FadeIn>
+            <h2 className="text-3xl sm:text-4xl font-black tracking-[-0.02em] text-[#1c1611]">
+              Try the production engine live.
+            </h2>
+            <p className="text-[#6b5744] text-sm leading-relaxed">
+              Pick a creator archetype and watch CreatorFlow parse raw ideas into hooks, shot lists, and calendar slots.
+            </p>
+          </div>
+          <InteractiveWorkflowSimulator />
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section id="faq" className="py-20 px-6 border-t border-slate-200/80 bg-white">
-        <div className="max-w-3xl mx-auto space-y-10">
-          <FadeIn>
-            <div className="text-center space-y-3">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Frequently Asked Questions
-              </h2>
-              <p className="text-slate-600 text-sm">
-                Everything you need to know about CreatorFlow's AI production architecture.
-              </p>
+      {/* ── FEATURES ── */}
+      <section id="features" className="py-20 px-6 bg-white border-t border-[#e8dece]">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <div className="space-y-3 max-w-xl">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#1c1611] text-amber-200 text-xs font-medium">
+              <Layers className="w-3.5 h-3.5" />
+              Architectural Advantage
             </div>
-          </FadeIn>
+            <h2 className="text-3xl sm:text-4xl font-black tracking-[-0.02em] text-[#1c1611]">
+              The operating system for serious creators.
+            </h2>
+            <p className="text-[#6b5744] text-sm leading-relaxed">
+              Eliminate blank-page syndrome and fragmented Google Docs. Everything calibrated for maximum viewer retention.
+            </p>
+          </div>
+          <Bento3DShowcase />
+        </div>
+      </section>
 
-          <div className="space-y-3">
+      {/* ── FAQ ── */}
+      <section id="faq" className="py-20 px-6 border-t border-[#e8dece] bg-white">
+        <div className="max-w-2xl mx-auto space-y-10">
+          <div className="space-y-2">
+            <h2 className="text-3xl sm:text-4xl font-black tracking-[-0.02em] text-[#1c1611]">
+              Frequently asked questions.
+            </h2>
+            <p className="text-[#6b5744] text-sm">
+              Everything you need to know about CreatorFlow's AI production architecture.
+            </p>
+          </div>
+
+          <div className="divide-y divide-[#e8dece]">
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <FadeIn key={idx} delay={idx * 0.05}>
-                  <div
-                    className={`rounded-xl border transition-all ${
-                      isOpen
-                        ? "bg-slate-50/70 border-indigo-200 shadow-xs"
-                        : "bg-white border-slate-200/80 hover:border-slate-300"
-                    }`}
+                <div key={idx}>
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full py-4 text-left flex items-center justify-between gap-4 group"
                   >
-                    <button
-                      onClick={() => setOpenFaq(isOpen ? null : idx)}
-                      className="w-full p-5 text-left flex items-center justify-between gap-4"
-                    >
-                      <span className="text-base font-bold text-slate-900">
-                        {faq.q}
-                      </span>
-                      <ChevronDown
-                        className={`w-4 h-4 text-slate-400 transition-transform duration-200 flex-shrink-0 ${
-                          isOpen ? "rotate-180 text-indigo-600" : ""
-                        }`}
-                      />
-                    </button>
-                    <AnimatePresence>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="px-5 pb-5 text-slate-600 text-sm leading-relaxed"
-                        >
-                          {faq.a}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </FadeIn>
+                    <span className="text-sm font-semibold text-[#1c1611] group-hover:text-amber-700 transition-colors">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
+                        isOpen ? "rotate-180 text-amber-600" : "text-[#9c836a]"
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="pb-4 text-sm text-[#6b5744] leading-relaxed"
+                      >
+                        {faq.a}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* FINAL CALL TO ACTION — MINIMAL LIGHT */}
-      <section className="py-24 px-6 relative border-t border-slate-200/80 bg-[#f8fafc]">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <FadeIn>
-            <div className="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-150 flex items-center justify-center text-indigo-600 mx-auto shadow-xs">
-              <Sparkles className="w-6 h-6" />
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-950 leading-tight">
-              Ready to Upgrade to an <br className="hidden sm:block" />
-              <span className="text-indigo-600">Automated Content Engine</span>?
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <p className="text-slate-600 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
-              Stop letting ideas die in messy notes. Deploy your CreatorFlow workspace now and produce with repeatable consistency.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <Link
-                href="/signup"
-                className="w-full sm:w-auto px-7 py-3.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm rounded-xl transition-all shadow-xs flex items-center justify-center gap-2 active:scale-[0.98]"
-              >
-                <span>Deploy Workspace For Free</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/login"
-                className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm rounded-xl border border-slate-200 shadow-xs transition-all flex items-center justify-center active:scale-[0.98]"
-              >
-                Sign In to Account
-              </Link>
-            </div>
-          </FadeIn>
+      {/* ── CTA ── */}
+      <section className="py-24 px-6 bg-[#1c1611]">
+        <div className="max-w-2xl mx-auto text-center space-y-6">
+          <div className="w-10 h-10 rounded-xl bg-amber-600 flex items-center justify-center mx-auto shadow-md">
+            <Sparkles className="w-5 h-5 text-white" />
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black tracking-[-0.03em] text-[#faf8f5] leading-tight">
+            Ready to automate your<br className="hidden sm:block" /> content engine?
+          </h2>
+          <p className="text-[#9c836a] text-sm sm:text-base leading-relaxed">
+            Stop letting ideas die in messy notes. Deploy your CreatorFlow workspace and produce with repeatable consistency.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Link
+              href="/signup"
+              className="w-full sm:w-auto px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm rounded-lg transition-colors shadow-sm flex items-center justify-center gap-2"
+            >
+              Deploy workspace for free
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/login"
+              className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-[#2a2018] text-[#9c836a] hover:text-[#d4bea0] font-medium text-sm rounded-lg border border-[#3a2e20] transition-all flex items-center justify-center"
+            >
+              Sign in to account
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* FOOTER — MINIMAL LIGHT */}
-      <footer className="border-t border-slate-200 py-10 px-6 bg-white text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          
-          <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-md bg-indigo-600 flex items-center justify-center">
-              <Sparkles className="w-3.5 h-3.5 text-white" />
+      {/* ── FOOTER ── */}
+      <footer className="bg-[#1c1611] border-t border-[#2e2416] py-8 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#6b5744]">
+
+          <div className="flex items-center gap-2">
+            <div className="w-5 h-5 rounded-md bg-amber-600 flex items-center justify-center">
+              <Sparkles className="w-3 h-3 text-white" />
             </div>
-            <span className="font-bold text-slate-900 tracking-tight text-sm">CreatorFlow AI</span>
-            <span className="text-[11px] text-slate-400 font-mono">v0.2.0</span>
+            <span className="font-semibold text-[#d4bea0] text-sm">CreatorFlow AI</span>
+            <span className="font-mono text-[#3a2e20]">v0.2.0</span>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-6 font-medium text-slate-600">
-            <a href="#simulator" className="hover:text-slate-900 transition-colors">Simulator</a>
-            <a href="#features" className="hover:text-slate-900 transition-colors">Platform</a>
-            <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
+          <div className="flex flex-wrap items-center justify-center gap-5">
+            <a href="#simulator" className="hover:text-[#d4bea0] transition-colors">Simulator</a>
+            <a href="#features"  className="hover:text-[#d4bea0] transition-colors">Platform</a>
+            <Link href="/privacy" className="hover:text-[#d4bea0] transition-colors">Privacy</Link>
+            <Link href="/terms"   className="hover:text-[#d4bea0] transition-colors">Terms</Link>
           </div>
 
-          <div className="flex items-center gap-2 text-slate-500">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
-            All Systems Operational • © {new Date().getFullYear()} CreatorFlow AI
+          <div className="flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-pulse" />
+            <span>All systems operational · © {new Date().getFullYear()} CreatorFlow AI</span>
           </div>
         </div>
       </footer>

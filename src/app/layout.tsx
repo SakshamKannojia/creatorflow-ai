@@ -14,7 +14,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#090D16",
+  themeColor: "#f2ede4",
 };
 
 export const metadata: Metadata = {
@@ -39,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} dark antialiased`}>
-      <body className="min-h-screen bg-[#090D16] text-[#F8FAFC] font-sans selection:bg-indigo-500/30 selection:text-indigo-200">
+    <html lang="en" className={`${inter.variable} antialiased`}>
+      <body className="min-h-screen bg-[#faf8f5] text-[#1c1611] font-sans">
         <AuthProvider>
           <ToastProvider>
             {children}

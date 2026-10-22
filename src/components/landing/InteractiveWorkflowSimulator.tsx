@@ -116,21 +116,21 @@ export default function InteractiveWorkflowSimulator() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto rounded-2xl border border-slate-200/90 bg-white p-6 sm:p-8 shadow-[0_12px_40px_-15px_rgba(0,0,0,0.06)] space-y-6">
+    <div className="w-full max-w-5xl mx-auto rounded-2xl border border-[#e8dece] bg-white p-6 sm:p-8 shadow-[0_12px_40px_-15px_rgba(107,66,38,0.10)] space-y-6">
       
       {/* Top Console Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#f0ebe2]">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-indigo-700">
+            <span className="text-xs font-semibold uppercase tracking-wider text-amber-800">
               Interactive Workflow Engine
             </span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-mono">
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f0ebe2] text-[#6b5744] font-mono">
               Live Preview
             </span>
           </div>
-          <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+          <h3 className="text-xl sm:text-2xl font-bold text-[#1c1611] tracking-tight">
             Experience CreatorFlow in Real-Time
           </h3>
         </div>
@@ -146,8 +146,8 @@ export default function InteractiveWorkflowSimulator() {
               }}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                 activeScenarioIndex === i
-                  ? "bg-slate-900 text-white font-semibold shadow-xs"
-                  : "bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900"
+                  ? "bg-[#1c1611] text-amber-200 font-semibold shadow-xs"
+                  : "bg-[#f0ebe2] text-[#6b5744] hover:bg-[#e8dece] hover:text-[#1c1611]"
               }`}
             >
               {sc.category}
@@ -166,22 +166,22 @@ export default function InteractiveWorkflowSimulator() {
               onClick={() => setActiveStep(st.id as 0 | 1 | 2 | 3)}
               className={`flex items-center gap-3 p-3.5 rounded-xl border text-left transition-all ${
                 isCurrent
-                  ? "bg-indigo-50/70 border-indigo-200/80 text-indigo-950 shadow-xs"
-                  : "bg-slate-50/60 border-slate-200/70 text-slate-600 hover:border-slate-300 hover:text-slate-900"
+                  ? "bg-amber-50/70 border-amber-200/80 text-[#1c1611] shadow-xs"
+                  : "bg-[#faf8f5] border-[#e8dece] text-[#6b5744] hover:border-[#d4bea0] hover:text-[#1c1611]"
               }`}
             >
               <div
                 className={`p-2 rounded-lg ${
-                  isCurrent ? "bg-indigo-600 text-white shadow-xs" : "bg-white border border-slate-200 text-slate-500"
+                  isCurrent ? "bg-amber-600 text-white shadow-xs" : "bg-white border border-[#e8dece] text-[#9c836a]"
                 }`}
               >
                 {st.icon}
               </div>
               <div className="min-w-0">
-                <div className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">
+                <div className="text-[10px] text-[#9c836a] uppercase tracking-wider font-semibold">
                   Step 0{st.id + 1}
                 </div>
-                <div className="text-xs font-semibold truncate text-slate-900">
+                <div className="text-xs font-semibold truncate text-[#1c1611]">
                   {st.label}
                 </div>
               </div>
@@ -191,7 +191,7 @@ export default function InteractiveWorkflowSimulator() {
       </div>
 
       {/* Main Interactive Stage */}
-      <div className="relative min-h-[340px] rounded-xl border border-slate-200/80 bg-slate-50/50 p-5 sm:p-6 overflow-hidden">
+      <div className="relative min-h-[340px] rounded-xl border border-[#e8dece] bg-[#faf8f5] p-5 sm:p-6 overflow-hidden">
         <AnimatePresence mode="wait">
           
           {/* STEP 0: CONTENT DNA */}
@@ -206,10 +206,10 @@ export default function InteractiveWorkflowSimulator() {
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <div className="text-xs text-indigo-700 font-semibold uppercase tracking-wider mb-1">
+                  <div className="text-xs text-amber-800 font-semibold uppercase tracking-wider mb-1">
                     Topic & Target Audience
                   </div>
-                  <h4 className="text-lg sm:text-xl font-bold text-slate-900">
+                  <h4 className="text-lg sm:text-xl font-bold text-[#1c1611]">
                     &quot;{scenario.topic}&quot;
                   </h4>
                 </div>
@@ -218,7 +218,7 @@ export default function InteractiveWorkflowSimulator() {
                     <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
                     DNA Viral Score: {scenario.dnaScore}%
                   </div>
-                  <div className="px-3 py-1 rounded-full bg-indigo-50 border border-indigo-150 text-indigo-700 text-xs font-medium">
+                  <div className="px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-medium">
                     {scenario.format}
                   </div>
                 </div>
@@ -226,58 +226,58 @@ export default function InteractiveWorkflowSimulator() {
 
               {/* DNA Attribute Gauges */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+                <div className="p-4 rounded-xl bg-white border border-[#e8dece] shadow-xs space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-600 font-medium">Hook Retention Strength</span>
-                    <span className="text-indigo-700 font-bold">96%</span>
+                    <span className="text-[#6b5744] font-medium">Hook Retention Strength</span>
+                    <span className="text-amber-700 font-bold">96%</span>
                   </div>
-                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-indigo-600 h-full rounded-full w-[96%]" />
+                  <div className="w-full bg-[#e8dece] h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-amber-600 h-full rounded-full w-[96%]" />
                   </div>
-                  <p className="text-[11px] text-slate-500">
-                    Hook Type: <span className="text-slate-800 font-medium">{scenario.hookType}</span>
+                  <p className="text-[11px] text-[#9c836a]">
+                    Hook Type: <span className="text-[#1c1611] font-medium">{scenario.hookType}</span>
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+                <div className="p-4 rounded-xl bg-white border border-[#e8dece] shadow-xs space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-600 font-medium">Pacing & Cadence Target</span>
-                    <span className="text-sky-700 font-bold">155 WPM</span>
+                    <span className="text-[#6b5744] font-medium">Pacing & Cadence Target</span>
+                    <span className="text-[#6b5744] font-bold">155 WPM</span>
                   </div>
-                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-sky-500 h-full rounded-full w-[88%]" />
+                  <div className="w-full bg-[#e8dece] h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-[#8c6a47] h-full rounded-full w-[88%]" />
                   </div>
-                  <p className="text-[11px] text-slate-500">
-                    Duration: <span className="text-slate-800 font-medium">0:58 - 1:02 min</span>
+                  <p className="text-[11px] text-[#9c836a]">
+                    Duration: <span className="text-[#1c1611] font-medium">0:58 - 1:02 min</span>
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
+                <div className="p-4 rounded-xl bg-white border border-[#e8dece] shadow-xs space-y-2">
                   <div className="flex justify-between text-xs">
-                    <span className="text-slate-600 font-medium">Audience Archetype</span>
-                    <span className="text-purple-700 font-bold">High Intent</span>
+                    <span className="text-[#6b5744] font-medium">Audience Archetype</span>
+                    <span className="text-amber-800 font-bold">High Intent</span>
                   </div>
-                  <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
-                    <div className="bg-purple-600 h-full rounded-full w-[92%]" />
+                  <div className="w-full bg-[#e8dece] h-1.5 rounded-full overflow-hidden">
+                    <div className="bg-amber-700 h-full rounded-full w-[92%]" />
                   </div>
-                  <p className="text-[11px] text-slate-500">
-                    Tone: <span className="text-slate-800 font-medium">Authoritative, Pragmatic</span>
+                  <p className="text-[11px] text-[#9c836a]">
+                    Tone: <span className="text-[#1c1611] font-medium">Authoritative, Pragmatic</span>
                   </p>
                 </div>
               </div>
 
               {/* Generated Hook Highlight */}
-              <div className="p-4 rounded-xl bg-indigo-50/70 border border-indigo-200/80">
+              <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-indigo-800 flex items-center gap-1.5">
-                    <Zap className="w-3.5 h-3.5 text-amber-500" />
+                  <span className="text-xs font-semibold uppercase tracking-wider text-amber-800 flex items-center gap-1.5">
+                    <Zap className="w-3.5 h-3.5 text-amber-600" />
                     Tested 0-5s Visual & Audio Hook
                   </span>
                   <span className="text-[11px] text-emerald-800 font-semibold flex items-center gap-1 bg-emerald-100/60 px-2 py-0.5 rounded-full">
                     <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Pacing Validated
                   </span>
                 </div>
-                <p className="text-sm font-semibold text-slate-900 leading-relaxed">
+                <p className="text-sm font-semibold text-[#1c1611] leading-relaxed">
                   &quot;{scenario.hook}&quot;
                 </p>
               </div>
@@ -294,14 +294,14 @@ export default function InteractiveWorkflowSimulator() {
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200/70">
+              <div className="flex items-center justify-between pb-3 border-b border-[#f0ebe2]">
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4 text-indigo-600" />
-                  <span className="text-sm font-bold text-slate-900">Teleprompter Output</span>
+                  <Sparkles className="w-4 h-4 text-amber-600" />
+                  <span className="text-sm font-bold text-[#1c1611]">Teleprompter Output</span>
                 </div>
                 <button
                   onClick={handleCopy}
-                  className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:border-slate-300 text-slate-700 text-xs font-medium flex items-center gap-1.5 shadow-xs transition-colors"
+                  className="px-3 py-1.5 rounded-lg bg-white border border-[#e8dece] hover:border-[#d4bea0] text-[#6b5744] text-xs font-medium flex items-center gap-1.5 shadow-xs transition-colors"
                 >
                   {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                   {isCopied ? "Copied Script" : "Copy Script"}
@@ -312,17 +312,17 @@ export default function InteractiveWorkflowSimulator() {
                 {scenario.scriptLines.map((line, i) => (
                   <div
                     key={i}
-                    className="p-3.5 rounded-xl bg-white border border-slate-200/80 hover:border-slate-300 transition-colors flex flex-col sm:flex-row sm:items-start gap-3 shadow-xs"
+                    className="p-3.5 rounded-xl bg-white border border-[#e8dece] hover:border-[#d4bea0] transition-colors flex flex-col sm:flex-row sm:items-start gap-3 shadow-xs"
                   >
                     <div className="flex sm:flex-col items-center sm:items-start justify-between min-w-[120px]">
-                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-700">
+                      <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#f0ebe2] border border-[#e8dece] text-[#6b5744]">
                         {line.time}
                       </span>
-                      <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider sm:mt-1">
+                      <span className="text-[10px] font-semibold text-[#9c836a] uppercase tracking-wider sm:mt-1">
                         {line.type}
                       </span>
                     </div>
-                    <div className="text-xs sm:text-sm text-slate-800 leading-relaxed font-sans font-normal">
+                    <div className="text-xs sm:text-sm text-[#1c1611] leading-relaxed font-sans font-normal">
                       {line.content}
                     </div>
                   </div>
@@ -341,31 +341,31 @@ export default function InteractiveWorkflowSimulator() {
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
+              <div className="text-xs text-[#9c836a] font-semibold uppercase tracking-wider">
                 Direct-to-Camera & B-Roll Shot List
               </div>
               <div className="grid gap-2.5">
                 {scenario.blueprints.map((bp, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl bg-white border border-slate-200/80 flex items-start gap-3 shadow-xs"
+                    className="p-4 rounded-xl bg-white border border-[#e8dece] flex items-start gap-3 shadow-xs"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-indigo-50 border border-indigo-150 text-indigo-700 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                    <div className="w-7 h-7 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 flex items-center justify-center font-bold text-xs flex-shrink-0">
                       0{i + 1}
                     </div>
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-slate-900 uppercase tracking-wider">
+                        <span className="text-xs font-bold text-[#1c1611] uppercase tracking-wider">
                           {bp.type}
                         </span>
-                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-medium">
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#f0ebe2] text-[#6b5744] font-medium">
                           Ready for Shoot
                         </span>
                       </div>
-                      <div className="text-xs sm:text-sm text-slate-800 font-semibold">
+                      <div className="text-xs sm:text-sm text-[#1c1611] font-semibold">
                         {bp.cue}
                       </div>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-[#9c836a]">
                         {bp.note}
                       </div>
                     </div>
@@ -385,40 +385,40 @@ export default function InteractiveWorkflowSimulator() {
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
+              <div className="text-xs text-[#9c836a] font-semibold uppercase tracking-wider">
                 Multi-Platform Distribution Queue
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                  <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                <div className="p-4 rounded-xl bg-white border border-[#e8dece] shadow-xs space-y-2">
+                  <div className="text-xs text-[#9c836a] uppercase tracking-wider font-semibold">
                     Optimal Scheduling Window
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-100">
+                    <div className="p-2.5 rounded-lg bg-amber-50 text-amber-700 border border-amber-200">
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-base font-bold text-slate-900">
+                      <div className="text-base font-bold text-[#1c1611]">
                         {scenario.schedule.day} at {scenario.schedule.time}
                       </div>
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-[#9c836a]">
                         Calculated by Historical Follower Activity
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs space-y-2">
-                  <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold">
+                <div className="p-4 rounded-xl bg-white border border-[#e8dece] shadow-xs space-y-2">
+                  <div className="text-xs text-[#9c836a] uppercase tracking-wider font-semibold">
                     Simultaneous Syndication
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-lg bg-sky-50 text-sky-600 border border-sky-100">
+                    <div className="p-2.5 rounded-lg bg-[#f0ebe2] text-[#6b5744] border border-[#e8dece]">
                       <Radio className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-base font-bold text-slate-900">
+                      <div className="text-base font-bold text-[#1c1611]">
                         {scenario.schedule.channel}
                       </div>
                       <div className="text-xs text-emerald-700 font-medium">
@@ -429,14 +429,14 @@ export default function InteractiveWorkflowSimulator() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-indigo-50/70 border border-indigo-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div className="flex items-center gap-2 text-xs text-indigo-900 font-medium">
+              <div className="p-4 rounded-xl bg-amber-50/70 border border-amber-200/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-2 text-xs text-amber-900 font-medium">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                   Synced with Google Calendar, Notion &amp; Social Webhooks
                 </div>
                 <a
                   href="/generate"
-                  className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-xs transition-all text-center"
+                  className="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold shadow-xs transition-all text-center"
                 >
                   Open in Workspace
                 </a>
@@ -447,16 +447,16 @@ export default function InteractiveWorkflowSimulator() {
       </div>
 
       {/* Bottom status bar */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs text-slate-500">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#f0ebe2] text-xs text-[#9c836a]">
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           <span>GPU-Accelerated Script Synthesis</span>
-          <span className="text-slate-300">•</span>
+          <span className="text-[#d4c4b0]">•</span>
           <span>Zero manual formatting needed</span>
         </div>
         <button
           onClick={() => setActiveStep(((activeStep + 1) % 4) as 0 | 1 | 2 | 3)}
-          className="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center gap-1 transition-colors"
+          className="text-amber-700 hover:text-amber-900 font-semibold flex items-center gap-1 transition-colors"
         >
           Next Stage &rarr;
         </button>

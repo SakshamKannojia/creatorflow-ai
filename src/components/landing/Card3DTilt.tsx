@@ -70,7 +70,7 @@ export default function Card3DTilt({
         className="pointer-events-none absolute inset-0 rounded-[inherit] z-30 transition-opacity duration-300 overflow-hidden"
         style={{
           opacity: glarePosition.opacity,
-          background: `radial-gradient(circle 420px at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.18), rgba(99, 102, 241, 0.08) 45%, transparent 75%)`,
+          background: `radial-gradient(circle 420px at ${glarePosition.x}% ${glarePosition.y}%, rgba(255, 255, 255, 0.22), rgba(255, 200, 100, 0.06) 45%, transparent 75%)`,
         }}
       />
       {children}

@@ -22,21 +22,21 @@ export function Badge({
   ...props
 }: BadgeProps) {
   const variants = {
-    default: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
-    secondary: "bg-slate-800 text-slate-300 border-slate-700",
-    outline: "bg-transparent text-slate-400 border-slate-800",
-    success: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    warning: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-    danger: "bg-rose-500/10 text-rose-400 border-rose-500/20",
-    purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    platform: "bg-slate-800/80 text-slate-200 border-slate-700",
+    default: "bg-[#f5f0e8] text-[#4a2e10] border-[#d8cdb8]",
+    secondary: "bg-[#f0ebe2] text-[#6b5744] border-[#d8cdb8]",
+    outline: "bg-transparent text-[#9c836a] border-[#d8cdb8]",
+    success: "bg-emerald-50 text-emerald-800 border-emerald-200",
+    warning: "bg-[#f5f0e8] text-[#6b4226] border-[#c4b49a]",
+    danger: "bg-rose-50 text-rose-700 border-rose-200",
+    purple: "bg-[#ede7da] text-[#3d1f08] border-[#c4b49a]",
+    platform: "bg-[#f0ebe2] text-[#1c1611] border-[#d8cdb8]",
   };
 
   const platformColors: Record<string, string> = {
-    Instagram: "bg-pink-500/10 text-pink-400 border-pink-500/20",
-    LinkedIn: "bg-sky-500/10 text-sky-400 border-sky-500/20",
-    YouTube: "bg-red-500/10 text-red-400 border-red-500/20",
-    X: "bg-slate-700/30 text-slate-200 border-slate-600/30",
+    Instagram: "bg-pink-50 text-pink-700 border-pink-200",
+    LinkedIn: "bg-sky-50 text-sky-700 border-sky-200",
+    YouTube: "bg-red-50 text-red-700 border-red-200",
+    X: "bg-[#f0ebe2] text-[#1c1611] border-[#d8cdb8]",
   };
 
   const chosenStyle =

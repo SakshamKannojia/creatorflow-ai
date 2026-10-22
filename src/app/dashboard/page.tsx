@@ -263,7 +263,7 @@ export default function DashboardPage() {
                 <p className="text-xs text-slate-400 mt-1 max-w-xl">
                   {dna
                     ? `Configured: Tone: "${dna.tone}" • Style: "${dna.vocabulary_style}" • Language: "${dna.language}". All future generations automatically reflect your distinct voice.`
-                    : "Paste 5-10 past posts so Gemini AI can extract your hook style, vocabulary, and formatting habits."}
+                    : "Paste 5-10 past posts so the AI engine can extract your hook style, vocabulary, and formatting habits."}
                 </p>
               </div>
             </div>

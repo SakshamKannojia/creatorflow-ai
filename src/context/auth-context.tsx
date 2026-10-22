@@ -260,7 +260,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       id: "demo-creator-uuid",
       email: demoEmail,
       app_metadata: {},
-      user_metadata: { display_name: "Alex Vance" },
+      user_metadata: { display_name: "Creator" },
       aud: "authenticated",
       created_at: new Date().toISOString(),
     } as unknown as User;
@@ -270,7 +270,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setProfile({
       id: "demo-creator-uuid",
       email: demoEmail,
-      display_name: "Alex Vance",
+      display_name: "Creator",
       avatar_url: null,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),

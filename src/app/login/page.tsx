@@ -46,7 +46,7 @@ export default function LoginPage() {
 
   const handleDemoSignIn = () => {
     enableDemoMode("creator@creatorflow.ai");
-    toast.success("Demo Workspace Ready", "Logged in as Creator Alex Vance");
+    toast.success("Guest Workspace Ready", "Welcome to CreatorFlow AI");
     router.push("/dashboard");
   };
 

@@ -31,21 +31,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "relative inline-flex items-center justify-center font-medium transition-all duration-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#090D16] disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
+      "relative inline-flex items-center justify-center font-medium transition-all duration-200 select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c5533] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf8f5] disabled:opacity-50 disabled:pointer-events-none active:scale-[0.98]";
 
     const variants = {
       primary:
-        "bg-white hover:bg-slate-100 text-black border border-transparent shadow-sm",
+        "bg-[#7c5533] hover:bg-[#5c3d22] text-white border border-transparent shadow-sm",
       secondary:
-        "bg-slate-900 hover:bg-slate-800 text-slate-100 border border-slate-700 shadow-sm",
+        "bg-[#1c1611] hover:bg-[#2a1e14] text-[#e8dece] border border-[#3a2e20] shadow-sm",
       outline:
-        "bg-transparent hover:bg-slate-800 text-slate-200 border border-slate-700",
+        "bg-transparent hover:bg-[#f0ebe2] text-[#6b5744] border border-[#d8cdb8] hover:border-[#c4b49a]",
       ghost:
-        "bg-transparent hover:bg-slate-900 text-slate-300 hover:text-white",
+        "bg-transparent hover:bg-[#f0ebe2] text-[#6b5744] hover:text-[#1c1611]",
       danger:
-        "bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30",
+        "bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200",
       subtle:
-        "bg-slate-800/50 hover:bg-slate-800 text-slate-300 border border-slate-700",
+        "bg-[#f0ebe2] hover:bg-[#e8dece] text-[#6b5744] border border-[#d8cdb8]",
     };
 
     const sizes = {

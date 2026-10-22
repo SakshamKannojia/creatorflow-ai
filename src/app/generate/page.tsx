@@ -544,7 +544,7 @@ function GeneratorContent() {
             onClick={handleGenerate}
           >
             <Sparkles className="w-4 h-4 mr-2" />
-            {isGenerating ? "Synthesizing with Gemini..." : "Generate Content"}
+            {isGenerating ? "Synthesizing content..." : "Generate Content"}
           </Button>
         </div>
 

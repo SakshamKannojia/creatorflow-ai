@@ -87,13 +87,13 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               className={cn(
                 "pointer-events-auto flex items-start gap-3 p-4 rounded-xl shadow-2xl border backdrop-blur-md transition-all duration-200 animate-in fade-in slide-in-from-bottom-5",
                 toast.type === "success" &&
-                  "bg-[#0F172A]/95 border-emerald-500/30 text-emerald-100",
+                  "bg-white border-emerald-300 text-[#1c1611]",
                 toast.type === "error" &&
-                  "bg-[#0F172A]/95 border-rose-500/30 text-rose-100",
+                  "bg-white border-rose-300 text-[#1c1611]",
                 toast.type === "warning" &&
-                  "bg-[#0F172A]/95 border-amber-500/30 text-amber-100",
+                  "bg-white border-[#c4b49a] text-[#1c1611]",
                 toast.type === "info" &&
-                  "bg-[#0F172A]/95 border-indigo-500/30 text-indigo-100"
+                  "bg-white border-[#d8cdb8] text-[#1c1611]"
               )}
             >
               <div className="shrink-0 mt-0.5">
@@ -104,25 +104,25 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                   <AlertCircle className="w-5 h-5 text-rose-400" />
                 )}
                 {toast.type === "warning" && (
-                  <AlertTriangle className="w-5 h-5 text-amber-400" />
+                  <AlertTriangle className="w-5 h-5 text-[#8c6a47]" />
                 )}
                 {toast.type === "info" && (
-                  <Info className="w-5 h-5 text-indigo-400" />
+                  <Info className="w-5 h-5 text-[#7c5533]" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-semibold text-slate-100">
+                <div className="text-sm font-semibold text-[#1c1611]">
                   {toast.title}
                 </div>
                 {toast.description && (
-                  <div className="text-xs text-slate-400 mt-1 break-words">
+                  <div className="text-xs text-[#9c836a] mt-1 break-words">
                     {toast.description}
                   </div>
                 )}
               </div>
               <button
                 onClick={() => removeToast(toast.id)}
-                className="shrink-0 text-slate-400 hover:text-white p-1 transition-colors rounded-lg hover:bg-white/5"
+                className="shrink-0 text-[#9c836a] hover:text-[#1c1611] p-1 transition-colors rounded-lg hover:bg-[#f0ebe2]"
                 aria-label="Close notification"
               >
                 <X className="w-4 h-4" />
