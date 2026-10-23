@@ -8,6 +8,7 @@ import { useAuth } from "@/context/auth-context";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/toast";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -65,7 +66,11 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090D16] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen dark:bg-[#090D16] bg-[#faf8f5] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Theme Toggle */}
+      <div className="absolute top-4 right-4 z-10">
+        <ThemeToggle />
+      </div>
       {/* Background glowing ambient orbs */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-72 h-72 bg-violet-600/10 rounded-full blur-3xl pointer-events-none" />
@@ -75,25 +80,25 @@ export default function SignUpPage() {
         <div className="flex flex-col items-center text-center">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2.5 px-3 py-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all mb-4"
+            className="group inline-flex items-center gap-2.5 px-3 py-1.5 rounded-2xl dark:bg-slate-900/80 dark:border-slate-800 dark:hover:border-slate-700 bg-white border border-[#e8dece] hover:border-[#c4b49a] transition-all mb-4"
           >
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
               <Sparkles className="w-4 h-4" />
             </div>
-            <span className="font-bold text-base tracking-tight text-white">
+            <span className="font-bold text-base tracking-tight dark:text-white text-[#1c1611]">
               CreatorFlow<span className="text-indigo-400">.ai</span>
             </span>
           </Link>
-          <h2 className="text-2xl font-bold tracking-tight text-white">
+          <h2 className="text-2xl font-bold tracking-tight dark:text-white text-[#1c1611]">
             Create your CreatorFlow account
           </h2>
-          <p className="mt-1.5 text-xs text-slate-400">
+          <p className="mt-1.5 text-xs dark:text-slate-400 text-[#6b5744]">
             Start generating high-converting content with your unique voice
           </p>
         </div>
 
         {/* Card Form */}
-        <div className="mt-8 rounded-2xl bg-[#0F172A]/80 border border-slate-800/80 backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
+        <div className="mt-8 rounded-2xl dark:bg-[#0F172A]/80 dark:border-slate-800/80 bg-white border border-[#e8dece] backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
           {errorMessage && (
             <div className="mb-5 p-3 rounded-xl bg-rose-950/40 border border-rose-500/30 flex items-start gap-2 text-rose-300 text-xs">
               <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-rose-400" />
@@ -184,7 +189,7 @@ export default function SignUpPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-xs text-slate-400">
+          <div className="mt-6 text-center text-xs dark:text-slate-400 text-[#6b5744]">
             Already have an account?{" "}
             <Link
               href="/login"
@@ -195,7 +200,7 @@ export default function SignUpPage() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-[11px] text-slate-500 flex items-center justify-center gap-1.5">
+        <p className="mt-6 text-center text-[11px] dark:text-slate-500 text-[#9c836a] flex items-center justify-center gap-1.5">
           <Lock className="w-3 h-3" />
           No credit card required. Free creator tier included.
         </p>

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/context/auth-context";
 import { ToastProvider } from "@/components/ui/toast";
+import { ThemeProvider } from "@/context/theme-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -14,7 +15,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#f2ede4",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f2ede4" },
+    { media: "(prefers-color-scheme: dark)",  color: "#090d16" },
+  ],
 };
 
 export const metadata: Metadata = {
@@ -39,13 +43,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} antialiased`}>
-      <body className="min-h-screen bg-[#faf8f5] text-[#1c1611] font-sans">
-        <AuthProvider>
-          <ToastProvider>
-            {children}
-          </ToastProvider>
-        </AuthProvider>
+    <html lang="en" className={`${inter.variable} antialiased`} suppressHydrationWarning>
+      <head>
+        {/* Prevent flash of wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.classList.remove('dark')}else if(t==='dark'){document.documentElement.classList.add('dark')}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.classList.add('dark')}}catch(e){}})()`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen font-sans">
+        <ThemeProvider>
+          <AuthProvider>
+            <ToastProvider>
+              {children}
+            </ToastProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

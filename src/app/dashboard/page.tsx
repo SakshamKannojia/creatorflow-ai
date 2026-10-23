@@ -83,17 +83,17 @@ export default function DashboardPage() {
     <AppLayout>
       <div className="space-y-8 animate-in fade-in duration-300">
         {/* Top Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b border-slate-800/60">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2 border-b dark:border-slate-800/60 border-slate-200">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-xs font-medium text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20">
                 {currentDate}
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight dark:text-white text-slate-900">
               Good to see you, {displayName}.
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm dark:text-slate-400 text-slate-500 mt-1">
               Here is your content pipeline summary and latest generations.
             </p>
           </div>
@@ -108,19 +108,19 @@ export default function DashboardPage() {
 
         {/* Quick Actions */}
         <div>
-          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+          <h2 className="text-xs font-semibold dark:text-slate-400 text-slate-500 uppercase tracking-wider mb-3">
             Quick Actions
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             <Link href="/generate?type=Caption" className="group">
-              <div className="rounded-xl bg-slate-900/60 border border-slate-800/80 p-4 hover:border-indigo-500/40 hover:bg-slate-850/60 transition-all duration-200 flex items-center justify-between">
+              <div className="rounded-xl dark:bg-slate-900/60 dark:border-slate-800/80 bg-white border border-slate-200 p-4 hover:border-indigo-500/40 dark:hover:bg-slate-850/60 hover:shadow-sm transition-all duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
                     <FileText className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white">Generate Caption</h3>
-                    <p className="text-[11px] text-slate-400">Instagram, LinkedIn, X</p>
+                    <h3 className="text-sm font-semibold dark:text-white text-slate-900">Generate Caption</h3>
+                    <p className="text-[11px] dark:text-slate-400 text-slate-500">Instagram &amp; YouTube</p>
                   </div>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-indigo-400 group-hover:translate-x-1 transition-all" />
@@ -128,14 +128,14 @@ export default function DashboardPage() {
             </Link>
 
             <Link href="/generate?type=Reel+Script" className="group">
-              <div className="rounded-xl bg-slate-900/60 border border-slate-800/80 p-4 hover:border-violet-500/40 hover:bg-slate-850/60 transition-all duration-200 flex items-center justify-between">
+              <div className="rounded-xl dark:bg-slate-900/60 dark:border-slate-800/80 bg-white border border-slate-200 p-4 hover:border-violet-500/40 dark:hover:bg-slate-850/60 hover:shadow-sm transition-all duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-violet-500/10 text-violet-400 border border-violet-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
                     <Video className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white">Create Reel Script</h3>
-                    <p className="text-[11px] text-slate-400">15s, 30s, 60s Breakdown</p>
+                    <h3 className="text-sm font-semibold dark:text-white text-slate-900">Create Reel Script</h3>
+                    <p className="text-[11px] dark:text-slate-400 text-slate-500">15s, 30s, 60s Breakdown</p>
                   </div>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-violet-400 group-hover:translate-x-1 transition-all" />
@@ -143,14 +143,14 @@ export default function DashboardPage() {
             </Link>
 
             <Link href="/generate?type=Content+Idea" className="group">
-              <div className="rounded-xl bg-slate-900/60 border border-slate-800/80 p-4 hover:border-amber-500/40 hover:bg-slate-850/60 transition-all duration-200 flex items-center justify-between">
+              <div className="rounded-xl dark:bg-slate-900/60 dark:border-slate-800/80 bg-white border border-slate-200 p-4 hover:border-amber-500/40 dark:hover:bg-slate-850/60 hover:shadow-sm transition-all duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
                     <Lightbulb className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white">Generate Content Idea</h3>
-                    <p className="text-[11px] text-slate-400">Angles, Hooks & Angles</p>
+                    <h3 className="text-sm font-semibold dark:text-white text-slate-900">Generate Content Idea</h3>
+                    <p className="text-[11px] dark:text-slate-400 text-slate-500">Angles, Hooks & Angles</p>
                   </div>
                 </div>
                 <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
@@ -161,13 +161,13 @@ export default function DashboardPage() {
 
         {/* Stats Grid */}
         <div>
-          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+          <h2 className="text-xs font-semibold dark:text-slate-400 text-slate-500 uppercase tracking-wider mb-3">
             Overview
           </h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Total Content */}
-            <div className="rounded-2xl bg-[#0F172A]/70 border border-slate-800/80 p-4 sm:p-5 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-slate-400 mb-2">
+            <div className="rounded-2xl dark:bg-[#0F172A]/70 dark:border-slate-800/80 bg-white border border-slate-200 p-4 sm:p-5 backdrop-blur-sm">
+              <div className="flex items-center justify-between dark:text-slate-400 text-slate-500 mb-2">
                 <span className="text-xs font-medium">Total Content</span>
                 <div className="p-1.5 rounded-lg bg-indigo-500/10 text-indigo-400">
                   <Bookmark className="w-4 h-4" />
@@ -176,16 +176,16 @@ export default function DashboardPage() {
               {isLoading ? (
                 <Skeleton className="h-8 w-16" />
               ) : (
-                <div className="text-2xl font-bold text-white tracking-tight">
+                <div className="text-2xl font-bold dark:text-white text-slate-900 tracking-tight">
                   {stats?.totalContent ?? 0}
                 </div>
               )}
-              <p className="text-[11px] text-slate-500 mt-1">Across all platforms</p>
+              <p className="text-[11px] dark:text-slate-500 text-slate-400 mt-1">Across all platforms</p>
             </div>
 
             {/* Drafts */}
-            <div className="rounded-2xl bg-[#0F172A]/70 border border-slate-800/80 p-4 sm:p-5 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-slate-400 mb-2">
+            <div className="rounded-2xl dark:bg-[#0F172A]/70 dark:border-slate-800/80 bg-white border border-slate-200 p-4 sm:p-5 backdrop-blur-sm">
+              <div className="flex items-center justify-between dark:text-slate-400 text-slate-500 mb-2">
                 <span className="text-xs font-medium">Drafts</span>
                 <div className="p-1.5 rounded-lg bg-amber-500/10 text-amber-400">
                   <Clock className="w-4 h-4" />
@@ -194,16 +194,16 @@ export default function DashboardPage() {
               {isLoading ? (
                 <Skeleton className="h-8 w-16" />
               ) : (
-                <div className="text-2xl font-bold text-white tracking-tight">
+                <div className="text-2xl font-bold dark:text-white text-slate-900 tracking-tight">
                   {stats?.drafts ?? 0}
                 </div>
               )}
-              <p className="text-[11px] text-slate-500 mt-1">In progress & editing</p>
+              <p className="text-[11px] dark:text-slate-500 text-slate-400 mt-1">In progress & editing</p>
             </div>
 
             {/* Published / Ready */}
-            <div className="rounded-2xl bg-[#0F172A]/70 border border-slate-800/80 p-4 sm:p-5 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-slate-400 mb-2">
+            <div className="rounded-2xl dark:bg-[#0F172A]/70 dark:border-slate-800/80 bg-white border border-slate-200 p-4 sm:p-5 backdrop-blur-sm">
+              <div className="flex items-center justify-between dark:text-slate-400 text-slate-500 mb-2">
                 <span className="text-xs font-medium">Published</span>
                 <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400">
                   <CheckCircle2 className="w-4 h-4" />
@@ -212,16 +212,16 @@ export default function DashboardPage() {
               {isLoading ? (
                 <Skeleton className="h-8 w-16" />
               ) : (
-                <div className="text-2xl font-bold text-white tracking-tight">
+                <div className="text-2xl font-bold dark:text-white text-slate-900 tracking-tight">
                   {stats?.published ?? 0}
                 </div>
               )}
-              <p className="text-[11px] text-slate-500 mt-1">Posted to channels</p>
+              <p className="text-[11px] dark:text-slate-500 text-slate-400 mt-1">Posted to channels</p>
             </div>
 
             {/* Saved Ideas */}
-            <div className="rounded-2xl bg-[#0F172A]/70 border border-slate-800/80 p-4 sm:p-5 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-slate-400 mb-2">
+            <div className="rounded-2xl dark:bg-[#0F172A]/70 dark:border-slate-800/80 bg-white border border-slate-200 p-4 sm:p-5 backdrop-blur-sm">
+              <div className="flex items-center justify-between dark:text-slate-400 text-slate-500 mb-2">
                 <span className="text-xs font-medium">Saved Ideas</span>
                 <div className="p-1.5 rounded-lg bg-violet-500/10 text-violet-400">
                   <Lightbulb className="w-4 h-4" />
@@ -230,11 +230,11 @@ export default function DashboardPage() {
               {isLoading ? (
                 <Skeleton className="h-8 w-16" />
               ) : (
-                <div className="text-2xl font-bold text-white tracking-tight">
+                <div className="text-2xl font-bold dark:text-white text-slate-900 tracking-tight">
                   {stats?.savedIdeas ?? 0}
                 </div>
               )}
-              <p className="text-[11px] text-slate-500 mt-1">Concepts to produce</p>
+              <p className="text-[11px] dark:text-slate-500 text-slate-400 mt-1">Concepts to produce</p>
             </div>
           </div>
         </div>
@@ -248,7 +248,7 @@ export default function DashboardPage() {
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-white">Content DNA Engine</h3>
+                  <h3 className="text-sm font-semibold dark:text-white text-slate-900">Content DNA Engine</h3>
                   {dna ? (
                     <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -260,7 +260,7 @@ export default function DashboardPage() {
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-slate-400 mt-1 max-w-xl">
+                <p className="text-xs dark:text-slate-400 text-slate-500 mt-1 max-w-xl">
                   {dna
                     ? `Configured: Tone: "${dna.tone}" • Style: "${dna.vocabulary_style}" • Language: "${dna.language}". All future generations automatically reflect your distinct voice.`
                     : "Paste 5-10 past posts so the AI engine can extract your hook style, vocabulary, and formatting habits."}
@@ -281,8 +281,8 @@ export default function DashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <div>
-              <h2 className="text-base font-semibold text-white">Recent Generations</h2>
-              <p className="text-xs text-slate-400">
+              <h2 className="text-base font-semibold dark:text-white text-slate-900">Recent Generations</h2>
+              <p className="text-xs dark:text-slate-400 text-slate-500">
                 Recently saved posts, reel scripts, and ideas
               </p>
             </div>
@@ -300,7 +300,7 @@ export default function DashboardPage() {
               {[1, 2, 3].map((n) => (
                 <div
                   key={n}
-                  className="rounded-xl bg-slate-900/60 border border-slate-800 p-4 space-y-2"
+                  className="rounded-xl dark:bg-slate-900/60 dark:border-slate-800 bg-white border border-slate-200 p-4 space-y-2"
                 >
                   <Skeleton className="h-5 w-1/3" />
                   <Skeleton className="h-4 w-2/3" />
@@ -309,12 +309,12 @@ export default function DashboardPage() {
             </div>
           ) : recentContent.length === 0 ? (
             /* Empty State */
-            <div className="rounded-2xl bg-slate-900/40 border border-dashed border-slate-800 p-10 text-center flex flex-col items-center">
-              <div className="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-400 mb-3">
+            <div className="rounded-2xl dark:bg-slate-900/40 dark:border-slate-800 bg-slate-50 border border-dashed border-slate-200 p-10 text-center flex flex-col items-center">
+              <div className="w-12 h-12 rounded-2xl dark:bg-slate-800/80 dark:border-slate-700 bg-slate-200 border border-slate-300 flex items-center justify-center text-slate-400 mb-3">
                 <Sparkles className="w-6 h-6 text-indigo-400" />
               </div>
-              <h3 className="text-sm font-semibold text-white">No content generated yet</h3>
-              <p className="text-xs text-slate-400 mt-1 max-w-sm">
+              <h3 className="text-sm font-semibold dark:text-white text-slate-900">No content generated yet</h3>
+              <p className="text-xs dark:text-slate-400 text-slate-500 mt-1 max-w-sm">
                 Get started by creating your first caption, reel breakdown, or carousel idea.
               </p>
               <Link href="/generate" className="mt-4">
@@ -329,7 +329,7 @@ export default function DashboardPage() {
               {recentContent.map((item) => (
                 <div
                   key={item.id}
-                  className="rounded-xl bg-[#0F172A]/70 border border-slate-800/80 p-4 hover:border-slate-700 transition-all duration-150 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  className="rounded-xl dark:bg-[#0F172A]/70 dark:border-slate-800/80 bg-white border border-slate-200 p-4 dark:hover:border-slate-700 hover:border-slate-300 transition-all duration-150 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                 >
                   <div className="min-w-0 flex-1 space-y-1.5">
                     <div className="flex flex-wrap items-center gap-2">
@@ -352,16 +352,16 @@ export default function DashboardPage() {
                       >
                         {item.status}
                       </Badge>
-                      <span className="text-[11px] text-slate-500">
+                      <span className="text-[11px] dark:text-slate-500 text-slate-400">
                         {formatDate(item.created_at)}
                       </span>
                     </div>
 
-                    <h4 className="text-sm font-semibold text-white truncate">
+                    <h4 className="text-sm font-semibold dark:text-white text-slate-900 truncate">
                       {item.title}
                     </h4>
 
-                    <p className="text-xs text-slate-400 line-clamp-1">
+                    <p className="text-xs dark:text-slate-400 text-slate-500 line-clamp-1">
                       {item.hook || item.content}
                     </p>
                   </div>

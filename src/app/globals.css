@@ -1,35 +1,73 @@
 @import "tailwindcss";
 
+/* ── Tailwind v4 dark-mode via .dark class ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    /* ── BEIGE BASE ── */
-    --background: #f2ede4; /* warm linen */
-    --foreground: #231a10; /* espresso */
-    --card: #faf7f2; /* soft cream card */
+    /* ── LIGHT: BEIGE BASE ── */
+    --background: #f2ede4;
+    --foreground: #231a10;
+    --card: #faf7f2;
     --card-foreground: #231a10;
     --popover: #faf7f2;
     --popover-foreground: #231a10;
-    /* ── BROWN ACCENT ── */
-    --primary: #7c5533; /* rich chocolate brown */
+    --primary: #7c5533;
     --primary-foreground: #faf7f2;
-    --secondary: #e8e0d0; /* light beige */
+    --secondary: #e8e0d0;
     --secondary-foreground: #5c3d1e;
     --muted: #ede7da;
     --muted-foreground: #8c6a47;
-    --accent: #d9c9b0; /* warm sand accent */
+    --accent: #d9c9b0;
     --accent-foreground: #3d1f08;
     --destructive: #b94040;
     --destructive-foreground: #faf7f2;
-    --border: #d8cdb8; /* warm beige border */
+    --border: #d8cdb8;
     --input: #d8cdb8;
     --ring: #7c5533;
     --radius: 0.75rem;
+
+    /* ── APP SHELL (light) ── */
+    --app-bg: #f4f6fb;
+    --app-sidebar-bg: #ffffff;
+    --app-sidebar-border: #e5e7ef;
+    --app-card-bg: #ffffff;
+    --app-card-border: #e5e7ef;
+    --app-text-primary: #0f172a;
+    --app-text-secondary: #64748b;
+    --app-text-muted: #94a3b8;
+    --app-nav-hover-bg: #f1f5f9;
+    --app-nav-active-bg: rgba(99, 102, 241, 0.08);
+    --app-nav-active-text: #4f46e5;
+    --app-divider: #e2e8f0;
+    --app-input-bg: #f8fafc;
+    --app-input-border: #cbd5e1;
+    --app-scrollbar: #cbd5e1;
+  }
+
+  .dark {
+    /* ── DARK APP SHELL ── */
+    --app-bg: #090d16;
+    --app-sidebar-bg: #0b101d;
+    --app-sidebar-border: rgba(30, 41, 59, 0.8);
+    --app-card-bg: rgba(15, 23, 42, 0.7);
+    --app-card-border: rgba(30, 41, 59, 0.8);
+    --app-text-primary: #f1f5f9;
+    --app-text-secondary: #94a3b8;
+    --app-text-muted: #64748b;
+    --app-nav-hover-bg: rgba(30, 41, 59, 0.6);
+    --app-nav-active-bg: rgba(99, 102, 241, 0.15);
+    --app-nav-active-text: #a5b4fc;
+    --app-divider: rgba(30, 41, 59, 0.8);
+    --app-input-bg: rgba(15, 23, 42, 0.8);
+    --app-input-border: rgba(30, 41, 59, 1);
+    --app-scrollbar: #334155;
   }
 }
 
 body {
-  background-color: #f2ede4;
-  color: #231a10;
+  background-color: var(--background);
+  color: var(--foreground);
   font-feature-settings:
     "rlig" 1,
     "calt" 1;
@@ -37,9 +75,12 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
-/* Warm minimal scrollbar */
+/* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
@@ -48,14 +89,14 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c4b49a;
+  background: var(--app-scrollbar);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #8c6a47;
 }
 
-/* Perspective utilities */
+/* ── Perspective utilities ── */
 .perspective-1000 {
   perspective: 1000px;
 }
@@ -66,21 +107,32 @@ body {
   backface-visibility: hidden;
 }
 
-/* Beige dot pattern */
+/* ── Beige dot pattern (light) / dark dot pattern (dark) ── */
 .bg-dot-pattern {
   background-size: 28px 28px;
   background-image: radial-gradient(rgba(92, 61, 34, 0.1) 1px, transparent 1px);
 }
+.dark .bg-dot-pattern {
+  background-image: radial-gradient(
+    rgba(148, 163, 184, 0.07) 1px,
+    transparent 1px
+  );
+}
 
-/* Beige grid */
+/* ── Grid pattern ── */
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image:
     linear-gradient(to right, rgba(92, 61, 34, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(92, 61, 34, 0.06) 1px, transparent 1px);
 }
+.dark .bg-grid-pattern {
+  background-image:
+    linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+}
 
-/* Shimmer */
+/* ── Shimmer ── */
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
@@ -108,7 +160,7 @@ body {
   content: "";
 }
 
-/* Fade-up animation */
+/* ── Fade-up animation ── */
 @keyframes fadeUp {
   from {
     opacity: 0;
@@ -123,7 +175,7 @@ body {
   animation: fadeUp 0.5s ease forwards;
 }
 
-/* Warm card hover */
+/* ── Warm card hover ── */
 .card-hover {
   transition:
     box-shadow 0.22s ease,
@@ -134,4 +186,19 @@ body {
   box-shadow: 0 8px 32px -8px rgba(92, 61, 34, 0.16);
   transform: translateY(-2px);
   border-color: #c4b49a;
+}
+
+/* ── Theme toggle smooth transition ── */
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+
+/* Exclude elements where transition would be disruptive */
+.no-transition,
+.no-transition * {
+  transition: none !important;
 }

@@ -47,13 +47,12 @@ import { toast } from "@/components/ui/toast";
 import { ReelBreakdownView } from "@/components/generator/reel-breakdown-view";
 import { RewriteModal } from "@/components/generator/rewrite-modal";
 
-const PLATFORMS: Platform[] = ["Instagram", "LinkedIn", "YouTube", "X"];
+const PLATFORMS: Platform[] = ["Instagram", "YouTube"];
 
 const CONTENT_TYPES: ContentType[] = [
-  "Caption",
   "Reel Script",
+  "Caption",
   "Carousel",
-  "LinkedIn Post",
   "YouTube Description",
   "Content Idea",
 ];
